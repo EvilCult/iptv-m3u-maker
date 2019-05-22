@@ -11,7 +11,7 @@ class DataBase :
         user = getpass.getuser()
         self.dbAddress = os.getcwd() + '/'
 
-        self.table = 'db'
+        self.table = 'lists'
 
         if self.connect() == False:
             self.connStat = False
@@ -27,7 +27,7 @@ class DataBase :
         try:
             if not os.path.exists(self.dbAddress) :
                 os.makedirs(self.dbAddress)
-            self.dbAddress += 'HouseData.db'
+            self.dbAddress += 'database.db'
             self.conn = sqlite3.connect(self.dbAddress)
             self.cur = self.conn.cursor()
             return True
@@ -37,7 +37,7 @@ class DataBase :
     def create (self) :
         if self.connStat == False : return False
 
-        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, url text, hType text, hSize text, district text, area text, comm text, price integer, agent text, source text, addtime text)'
+        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, enable integer, online integer, update text)'
         self.cur.execute(sql)
 
     def query (self, sql) :
