@@ -18,10 +18,13 @@ class Iptv :
 
         if res['code'] == 200 :
             pattern = re.compile(r"<code(.*?)</code>", re.I|re.S)
-            tmp = pattern.findall(res['body'])[0]
+            tmp = pattern.findall(res['body'])
 
             pattern = re.compile(r"#EXTINF:0,(.*?)\n#EXTVLCOPT:network-caching=1000\n(.*?)\n", re.I|re.S)
-            sourceList = pattern.findall(tmp)
+
+            sourceList = pattern.findall(tmp[0])
+            sourceList = sourceList + pattern.findall(tmp[1])
+
 
             for item in sourceList :
                 playable = self.chkPlayable(item[1])
