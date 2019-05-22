@@ -10,6 +10,9 @@ import sys
 import StringIO
 import gzip
 import random
+import socket
+
+socket.setdefaulttimeout(5.0)
 
 class Tools :
 

@@ -27,7 +27,7 @@ class DataBase :
         try:
             if not os.path.exists(self.dbAddress) :
                 os.makedirs(self.dbAddress)
-            self.dbAddress += 'database.db'
+            self.dbAddress += 'db.sqlite3'
             self.conn = sqlite3.connect(self.dbAddress)
             self.cur = self.conn.cursor()
             return True
@@ -86,5 +86,4 @@ class DataBase :
 
         if tableStat == False :
             self.create()
-
 
