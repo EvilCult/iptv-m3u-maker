@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import tools
+import time
 import re
 
 class Iptv :
@@ -27,12 +28,17 @@ class Iptv :
 
 
             for item in sourceList :
-                playable = self.chkPlayable(item[1])
+                netstat = self.chkPlayable(item[1])
 
-                if playable == True :
+                if netstat > 0 :
                     info = self.fmtTitle(item[0])
-                    print('title: ' + str(info['id']) + ' ' + str(info['title']))
-                    print('url: ' + str(item[1]))
+
+                    data = {
+                        'title': str(info['id']) + str(info['title']),
+                        'url': str(item[1]),
+                        'delay': netstat
+                    }
+                    print(data)
                 else :
                     pass # MAYBE later :P
         else :
@@ -40,14 +46,17 @@ class Iptv :
 
     def chkPlayable (self, url) :
         try:
+            startTime = int(round(time.time() * 1000))
             res = self.T.getPage(url)
 
             if res['code'] == 200 :
-                return True
+                endTime = int(round(time.time() * 1000))
+                useTime = endTime - startTime
+                return int(useTime)
             else:
-                return False
+                return 0
         except:
-            return False
+            return 0
 
 
     def baseFilter (self) :

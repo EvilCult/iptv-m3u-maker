@@ -12,7 +12,7 @@ import gzip
 import random
 import socket
 
-socket.setdefaulttimeout(5.0)
+socket.setdefaulttimeout(10.0)
 
 class Tools :
 

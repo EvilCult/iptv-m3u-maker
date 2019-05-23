@@ -37,7 +37,7 @@ class DataBase :
     def create (self) :
         if self.connStat == False : return False
 
-        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, enable integer, online integer, update text)'
+        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, enable integer, online integer, delay integer, update text)'
         self.cur.execute(sql)
 
     def query (self, sql) :
