@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import tools
+import db
 import time
 import re
 
@@ -9,6 +10,8 @@ class Iptv :
 
     def __init__ (self) :
         self.T = tools.Tools()
+        self.DB = db.DataBase()
+        self.now = int(time.time() * 1000)
 
     def getSourceA (self) :
         url = 'https://www.jianshu.com/p/2499255c7e79'
@@ -26,7 +29,6 @@ class Iptv :
             sourceList = pattern.findall(tmp[0])
             sourceList = sourceList + pattern.findall(tmp[1])
 
-
             for item in sourceList :
                 netstat = self.chkPlayable(item[1])
 
@@ -34,11 +36,15 @@ class Iptv :
                     info = self.fmtTitle(item[0])
 
                     data = {
-                        'title': str(info['id']) + str(info['title']),
-                        'url': str(item[1]),
-                        'delay': netstat
+                        'title'  : str(info['id']) + str(info['title']),
+                        'url'    : str(item[1]),
+                        'quality': str(info['quality']),
+                        'delay'  : netstat,
+                        'enable' : 1,
+                        'online' : 1,
+                        'udTime' : self.now,
                     }
-                    print(data)
+                    self.addData(data)
                 else :
                     pass # MAYBE later :P
         else :
@@ -58,8 +64,19 @@ class Iptv :
         except:
             return 0
 
+    def addData (self, data) :
+        sql = "SELECT * FROM %s WHERE title = '%s' AND url = '%s'" % (self.DB.table, data['title'], data['url'])
+        result = self.DB.query(sql)
 
-    def baseFilter (self) :
+        if len(result) == 0 :
+            print('add:' + str(data['title']))
+            self.DB.insert(data)
+        else :
+            print('update:' + str(data['title']))
+            id = result[0][0]
+            self.DB.edit(id, data)
+
+    def outPut (self) :
         pass
 
     def fmtTitle (self, string) :
@@ -76,3 +93,9 @@ class Iptv :
 
 obj = Iptv()
 obj.getSourceA()
+
+
+
+
+
+
