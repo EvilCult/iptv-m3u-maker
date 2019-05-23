@@ -37,7 +37,7 @@ class DataBase :
     def create (self) :
         if self.connStat == False : return False
 
-        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, enable integer, online integer, update text)'
+        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, enable integer, online integer, delay integer, udTime text)'
         self.cur.execute(sql)
 
     def query (self, sql) :
@@ -47,6 +47,14 @@ class DataBase :
         values = self.cur.fetchall()
 
         return values
+
+    def execute (self, sql) :
+        try :
+            if self.connStat == False : return False
+            self.cur.execute(sql)
+            return True
+        except :
+            return False
 
     def insert (self, data):
         if self.connStat == False : return False
@@ -62,6 +70,23 @@ class DataBase :
             valList.append(str(v).replace('"','\"').replace("'","''"))
 
         sql = "insert into " + self.table + " (`" + '`, `'.join(keyList) + "`) values ('" + "', '".join(valList) + "')"
+        self.cur.execute(sql)
+        self.conn.commit()
+
+    def edit (self, id, data):
+        if self.connStat == False : return False
+
+        import sys
+        reload(sys)
+        sys.setdefaultencoding('utf-8')
+
+        param = ''
+        for k, v in data.iteritems():
+            param = param + ", `%s` = '%s'" %(k, str(v).replace('"','\"').replace("'","''"))
+
+        param = param[1:]
+
+        sql = "update " + self.table + " set %s WHERE id = %s" % (param, id)
         self.cur.execute(sql)
         self.conn.commit()
 

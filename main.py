@@ -2,12 +2,25 @@
 # -*- coding: utf-8 -*-
 
 import tools
+import db
+import time
 import re
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class Iptv :
 
     def __init__ (self) :
         self.T = tools.Tools()
+        self.DB = db.DataBase()
+        self.now = int(time.time() * 1000)
+
+    def run(self) :
+        self.getSourceA()
+        self.outPut()
+        print("DONE!!")
 
     def getSourceA (self) :
         url = 'https://www.jianshu.com/p/2499255c7e79'
@@ -25,14 +38,22 @@ class Iptv :
             sourceList = pattern.findall(tmp[0])
             sourceList = sourceList + pattern.findall(tmp[1])
 
-
             for item in sourceList :
-                playable = self.chkPlayable(item[1])
+                netstat = self.chkPlayable(item[1])
 
-                if playable == True :
+                if netstat > 0 :
                     info = self.fmtTitle(item[0])
-                    print('title: ' + str(info['id']) + ' ' + str(info['title']))
-                    print('url: ' + str(item[1]))
+
+                    data = {
+                        'title'  : str(info['id']) + str(info['title']),
+                        'url'    : str(item[1]),
+                        'quality': str(info['quality']),
+                        'delay'  : netstat,
+                        'enable' : 1,
+                        'online' : 1,
+                        'udTime' : self.now,
+                    }
+                    self.addData(data)
                 else :
                     pass # MAYBE later :P
         else :
@@ -40,18 +61,40 @@ class Iptv :
 
     def chkPlayable (self, url) :
         try:
+            startTime = int(round(time.time() * 1000))
             res = self.T.getPage(url)
 
             if res['code'] == 200 :
-                return True
+                endTime = int(round(time.time() * 1000))
+                useTime = endTime - startTime
+                return int(useTime)
             else:
-                return False
+                return 0
         except:
-            return False
+            return 0
 
+    def addData (self, data) :
+        sql = "SELECT * FROM %s WHERE url = '%s'" % (self.DB.table, data['url'])
+        result = self.DB.query(sql)
 
-    def baseFilter (self) :
-        pass
+        if len(result) == 0 :
+            print('add:' + str(data['title']))
+            self.DB.insert(data)
+        else :
+            print('update:' + str(data['title']))
+            id = result[0][0]
+            self.DB.edit(id, data)
+
+    def outPut (self) :
+        sql = "SELECT * FROM %s GROUP BY title HAVING online = 1 ORDER BY id ASC" % (self.DB.table)
+        result = self.DB.query(sql)
+
+        with open('tv.m3u8', 'w') as f:
+            f.write("#EXTM3U\n")
+            for item in result :
+                f.write("#EXTINF:-1,%s\n" % (item[1]))
+                f.write("%s\n" % (item[3]))
+
 
     def fmtTitle (self, string) :
         pattern = re.compile(r"(cctv[-|\s]*\d*)*\s*?([^fhd|^hd|^sd|^\.m3u8]*)\s*?(fhd|hd|sd)*", re.I)
@@ -66,4 +109,10 @@ class Iptv :
         return result
 
 obj = Iptv()
-obj.getSourceA()
+obj.run()
+
+
+
+
+
+
