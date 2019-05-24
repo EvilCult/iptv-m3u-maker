@@ -5,10 +5,9 @@ import sqlite3
 import getpass
 import os
 
-class DataBase :
+class DataBase (object) :
 
     def __init__ (self) :
-        user = getpass.getuser()
         self.dbAddress = os.getcwd() + '/'
 
         self.table = 'lists'
@@ -31,13 +30,13 @@ class DataBase :
             self.conn = sqlite3.connect(self.dbAddress)
             self.cur = self.conn.cursor()
             return True
-        except Exception, e:
+        except :
             return False
 
     def create (self) :
         if self.connStat == False : return False
 
-        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, enable integer, online integer, delay integer, udTime text)'
+        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, level integer, enable integer, online integer, delay integer, udTime text)'
         self.cur.execute(sql)
 
     def query (self, sql) :
@@ -59,13 +58,9 @@ class DataBase :
     def insert (self, data):
         if self.connStat == False : return False
 
-        import sys
-        reload(sys)
-        sys.setdefaultencoding('utf-8')
-
         keyList = []
         valList = []
-        for k, v in data.iteritems():
+        for k, v in data.items():
             keyList.append(k)
             valList.append(str(v).replace('"','\"').replace("'","''"))
 
@@ -76,12 +71,8 @@ class DataBase :
     def edit (self, id, data):
         if self.connStat == False : return False
 
-        import sys
-        reload(sys)
-        sys.setdefaultencoding('utf-8')
-
         param = ''
-        for k, v in data.iteritems():
+        for k, v in data.items():
             param = param + ", `%s` = '%s'" %(k, str(v).replace('"','\"').replace("'","''"))
 
         param = param[1:]
