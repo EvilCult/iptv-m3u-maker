@@ -41,7 +41,6 @@ class Source (object) :
                         'url'    : str(item[1]),
                         'quality': str(info['quality']),
                         'delay'  : netstat,
-                        'level'  : str(info['level']),
                         'enable' : 1,
                         'online' : 1,
                         'udTime' : self.now,

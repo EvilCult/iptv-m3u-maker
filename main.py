@@ -6,8 +6,9 @@ import db
 import time
 import re
 from plugins import base
+from plugins import lista
 
-class Iptv :
+class Iptv (object):
 
     def __init__ (self) :
         self.T = tools.Tools()
@@ -18,7 +19,7 @@ class Iptv :
         urlList = Base.getSource()
         for item in urlList :
             self.addData(item)
-        # self.outPut()
+        self.outPut()
         print("DONE!!")
 
     def addData (self, data) :
@@ -43,7 +44,6 @@ class Iptv :
 
 obj = Iptv()
 obj.run()
-
 
 
 

@@ -10,10 +10,11 @@ import gzip
 import random
 import socket
 import time
+import area
 
 socket.setdefaulttimeout(10.0)
 
-class Tools :
+class Tools (object) :
 
     def __init__ (self) :
         pass
@@ -97,7 +98,15 @@ class Tools :
             'id'     : tmp[0].strip('-').strip(),
             'title'  : tmp[1].strip('-').strip(),
             'quality': tmp[2].strip('-').strip(),
+            'level'  : 4,
         }
+
+        if result['id'] != '':
+            pattern = re.compile(r"cctv[-|\s]*(\d*)", re.I)
+            result['id'] = re.sub(pattern, "CCTV-\\1", result['id'])
+
+        Area = area.Area()
+        result['level'] = Area.classify(str(result['id']) + str(result['title']))
 
         return result
 
@@ -114,3 +123,4 @@ class Tools :
                 return 0
         except:
             return 0
+

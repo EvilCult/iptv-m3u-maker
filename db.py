@@ -5,7 +5,7 @@ import sqlite3
 import getpass
 import os
 
-class DataBase :
+class DataBase (object) :
 
     def __init__ (self) :
         self.dbAddress = os.getcwd() + '/'
@@ -36,7 +36,7 @@ class DataBase :
     def create (self) :
         if self.connStat == False : return False
 
-        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, enable integer, online integer, delay integer, udTime text)'
+        sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, level integer, enable integer, online integer, delay integer, udTime text)'
         self.cur.execute(sql)
 
     def query (self, sql) :
@@ -60,7 +60,7 @@ class DataBase :
 
         keyList = []
         valList = []
-        for k, v in data.iteritems():
+        for k, v in data.items():
             keyList.append(k)
             valList.append(str(v).replace('"','\"').replace("'","''"))
 
