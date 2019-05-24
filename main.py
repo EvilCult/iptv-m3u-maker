@@ -15,10 +15,16 @@ class Iptv (object):
         self.DB = db.DataBase()
 
     def run(self) :
-        Base = base.Source()
-        urlList = Base.getSource()
-        for item in urlList :
-            self.addData(item)
+        # Base = base.Source()
+        # urlList = Base.getSource()
+        # for item in urlList :
+        #     self.addData(item)
+
+        # listA = lista.Source()
+        # urlList = listA.getSource()
+        # for item in urlList :
+        #     self.addData(item)
+
         self.outPut()
         print("DONE!!")
 
@@ -33,13 +39,28 @@ class Iptv (object):
             self.DB.edit(id, data)
 
     def outPut (self) :
-        sql = "SELECT * FROM %s GROUP BY title HAVING online = 1 ORDER BY id ASC" % (self.DB.table)
+        sql = """SELECT * FROM
+            (SELECT * FROM %s WHERE online = 1 ORDER BY delay DESC) AS delay
+            GROUP BY delay.title
+            HAVING delay.title != '' and delay.title != 'CCTV-'
+            ORDER BY level ASC, length(title) ASC, title ASC
+            """ % (self.DB.table)
         result = self.DB.query(sql)
 
         with open('tv.m3u8', 'w') as f:
             f.write("#EXTM3U\n")
             for item in result :
-                f.write("#EXTINF:-1,%s\n" % (item[1]))
+                className = '其他频道'
+                if item[4] == 1 :
+                    className = '中央频道'
+                elif item[4] == 2 :
+                    className = '地方频道'
+                elif item[4] == 3 :
+                    className = '地方频道'
+                else :
+                    className = '其他频道'
+
+                f.write("#EXTINF:-1, group-title=\"%s\", %s\n" % (className, item[1]))
                 f.write("%s\n" % (item[3]))
 
 obj = Iptv()
