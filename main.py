@@ -33,6 +33,7 @@ class Iptv (object):
         result = self.DB.query(sql)
 
         if len(result) == 0 :
+            data['enable'] = 1
             self.DB.insert(data)
         else :
             id = result[0][0]

@@ -37,12 +37,11 @@ class Source (object) :
                     info = self.T.fmtTitle(item[0])
 
                     data = {
-                        'title'  : str(info['id']) + str(info['title']),
+                        'title'  : str(info['id']) if info['id'] != '' else str(info['title']),
                         'url'    : str(item[1]),
                         'quality': str(info['quality']),
                         'delay'  : netstat,
                         'level'  : str(info['level']),
-                        'enable' : 1,
                         'online' : 1,
                         'udTime' : self.now,
                     }
