@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import urllib
-import urllib2
+import urllib.request
+import urllib.parse
+import urllib.error
 import re
 import ssl
 import os
 import platform
 import sys
-import StringIO
+import io
 import gzip
 import random
 import socket
@@ -25,11 +26,11 @@ class Tools :
 		requestHeader.append('X-FORWARDED-FOR:' + fakeIp)
 
 		if postData == {} :
-			request = urllib2.Request(url)
-		elif isinstance(postData, basestring) :
-			request = urllib2.Request(url, postData)
+			request = urllib.request.Request(url)
+		elif isinstance(postData, str) :
+			request = urllib.request.Request(url, postData)
 		else :
-			request = urllib2.Request(url, urllib.urlencode(postData))
+			request = urllib.request.Request(url, urllib.parse.urlencode(postData).encode('utf-8'))
 
 		for x in requestHeader :
 			headerType = x.split(':')[0]
@@ -40,13 +41,13 @@ class Tools :
 			ctx = ssl.create_default_context()
 			ctx.check_hostname = False
 			ctx.verify_mode = ssl.CERT_NONE
-			response = urllib2.urlopen(request, context = ctx)
+			response = urllib.request.urlopen(request, context = ctx)
 			header = response.headers
-			body = response.read()
+			body = response.read().decode('utf-8')
 			code = response.code
-		except urllib2.HTTPError as e:
+		except urllib.error.HTTPError as e:
 			header = e.headers
-			body = e.read()
+			body = e.read().decode('utf-8')
 			code = e.code
 
 		result = {
@@ -60,7 +61,7 @@ class Tools :
 	def fakeIp (self) :
 		fakeIpList = []
 
-		for x in xrange(0, 4):
+		for x in range(0, 4):
 			fakeIpList.append(str(int(random.uniform(0, 255))))
 
 		fakeIp = '.'.join(fakeIpList)
@@ -83,22 +84,12 @@ class Tools :
 
 	def gzdecode(self, data) :
 		try:
-			compressedstream = StringIO.StringIO(data)
+			compressedstream = io.StringIO(data)
 			gziper = gzip.GzipFile(fileobj = compressedstream)
 			html = gziper.read()
 			return html
-		except Exception as e:
+		except :
 			return data
-
-	def getRes (self, fileName) :
-		if getattr(sys, 'frozen', False):
-			base_path = os.path.join(sys._MEIPASS, 'RES')
-		else:
-			base_path = os.path.join(os.path.abspath("../"), 'Resources')
-
-		filePath = os.path.join(base_path, fileName)
-
-		return filePath
 
 	def isWin (self) :
 		osType = platform.system()

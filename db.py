@@ -8,7 +8,6 @@ import os
 class DataBase :
 
     def __init__ (self) :
-        user = getpass.getuser()
         self.dbAddress = os.getcwd() + '/'
 
         self.table = 'lists'
@@ -31,7 +30,7 @@ class DataBase :
             self.conn = sqlite3.connect(self.dbAddress)
             self.cur = self.conn.cursor()
             return True
-        except Exception, e:
+        except :
             return False
 
     def create (self) :
@@ -59,10 +58,6 @@ class DataBase :
     def insert (self, data):
         if self.connStat == False : return False
 
-        import sys
-        reload(sys)
-        sys.setdefaultencoding('utf-8')
-
         keyList = []
         valList = []
         for k, v in data.iteritems():
@@ -76,12 +71,8 @@ class DataBase :
     def edit (self, id, data):
         if self.connStat == False : return False
 
-        import sys
-        reload(sys)
-        sys.setdefaultencoding('utf-8')
-
         param = ''
-        for k, v in data.iteritems():
+        for k, v in data.items():
             param = param + ", `%s` = '%s'" %(k, str(v).replace('"','\"').replace("'","''"))
 
         param = param[1:]

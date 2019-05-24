@@ -5,10 +5,6 @@ import tools
 import db
 import time
 import re
-import sys
-
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 class Iptv :
 
@@ -19,7 +15,7 @@ class Iptv :
 
     def run(self) :
         self.getSourceA()
-        self.outPut()
+        # self.outPut()
         print("DONE!!")
 
     def getSourceA (self) :
