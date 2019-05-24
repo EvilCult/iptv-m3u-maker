@@ -40,7 +40,6 @@ class Source (object) :
                         'quality': str(info['quality']),
                         'delay'  : netstat,
                         'level'  : info['level'],
-                        'enable' : 1,
                         'online' : 1,
                         'udTime' : self.now,
                     }

@@ -104,6 +104,9 @@ class Tools (object) :
         if result['id'] != '':
             pattern = re.compile(r"cctv[-|\s]*(\d*)", re.I)
             result['id'] = re.sub(pattern, "CCTV-\\1", result['id'])
+            
+            if '+' in result['title'] :
+                result['id'] = result['id'] + str('+')
 
         Area = area.Area()
         result['level'] = Area.classify(str(result['id']) + str(result['title']))
