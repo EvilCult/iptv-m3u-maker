@@ -15,7 +15,6 @@ class Source (object) :
         urlList = []
 
         sourcePath = './plugins/dotpy_source'
-
         with open(sourcePath, 'r') as f:
             lines = f.readlines()
             for i in range(0, len(lines)):
@@ -37,7 +36,6 @@ class Source (object) :
                         'online' : 1,
                         'udTime' : self.now,
                     }
-                    print(data)
                     urlList.append(data)
                 else :
                     pass # MAYBE later :P

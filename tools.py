@@ -104,7 +104,7 @@ class Tools (object) :
         if result['id'] != '':
             pattern = re.compile(r"cctv[-|\s]*(\d*)", re.I)
             result['id'] = re.sub(pattern, "CCTV-\\1", result['id'])
-            
+
             if '+' in result['title'] :
                 result['id'] = result['id'] + str('+')
 
@@ -116,9 +116,8 @@ class Tools (object) :
     def chkPlayable (self, url) :
         try:
             startTime = int(round(time.time() * 1000))
-            res = self.getPage(url)
-
-            if res['code'] == 200 :
+            code = urllib.request.urlopen(url).getcode()
+            if code == 200 :
                 endTime = int(round(time.time() * 1000))
                 useTime = endTime - startTime
                 return int(useTime)

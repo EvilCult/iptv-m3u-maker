@@ -1,10 +1,10 @@
 #EXTM3U
 #EXTINF:-1, group-title="中央频道", CCTV-1
-http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221225530/index.m3u8
+http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221226316/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-2
-http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221227207/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221227207/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-3
-http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221226360/index.m3u8
+http://183.207.249.14/PLTV/3/224/3221225588/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-4
 http://223.110.245.170/PLTV/3/224/3221225534/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-5
@@ -12,31 +12,31 @@ http://223.82.250.72/live/cctv-5/1.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-6
 http://223.110.245.159/ott.js.chinamobile.com/PLTV/3/224/3221225548/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-7
-http://112.50.243.8/PLTV/88888888/224/3221225805/1.m3u8
+http://223.110.241.204:6610/gitv/live1/G_CCTV-7-HQ/G_CCTV-7-HQ/
 #EXTINF:-1, group-title="中央频道", CCTV-8
-http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221227204/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221227204/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-9
 http://223.110.245.161/ott.js.chinamobile.com/PLTV/3/224/3221225868/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-10
-http://223.110.245.163/ott.js.chinamobile.com/PLTV/3/224/3221227317/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221225550/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-11
 http://223.110.245.153/ott.js.chinamobile.com/PLTV/3/224/3221227384/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-12
-http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221225556/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221225556/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-13
-http://223.110.245.155/ott.js.chinamobile.com/PLTV/3/224/3221226021/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221225560/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-14
-http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221227201/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221227201/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-15
-http://223.110.245.143/ott.js.chinamobile.com/PLTV/3/224/3221226025/index.m3u8
+http://223.110.245.155/ott.js.chinamobile.com/PLTV/3/224/3221225568/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-5+
-http://121.31.30.90:8085/ysten-business/live/hdcctv05plus/1.m3u8
+http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8
 #EXTINF:-1, group-title="地方频道", 内蒙古
 http://223.110.245.139:80/PLTV/4/224/3221225836/index.m3u8
 #EXTINF:-1, group-title="地方频道", 黑龙江
-http://223.110.245.163/ott.js.chinamobile.com/PLTV/3/224/3221227252/index.m3u8
+http://223.110.245.161/ott.js.chinamobile.com/PLTV/3/224/3221227492/index.m3u8
 #EXTINF:-1, group-title="地方频道", 上海卫视
-http://223.110.245.159/ott.js.chinamobile.com/PLTV/3/224/3221225558/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221227208/index.m3u8
 #EXTINF:-1, group-title="地方频道", 上海纪实
 http://223.110.245.155/ott.js.chinamobile.com/PLTV/3/224/3221227420/index.m3u8
 #EXTINF:-1, group-title="地方频道", 云南卫视
@@ -46,13 +46,13 @@ http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221226922/index.m3u8
 #EXTINF:-1, group-title="地方频道", 凤凰资讯
 http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221226923/index.m3u8
 #EXTINF:-1, group-title="地方频道", 北京卫视
-http://223.110.245.163/ott.js.chinamobile.com/PLTV/3/224/3221227436/index.m3u8
+http://223.110.245.153/ott.js.chinamobile.com/PLTV/3/224/3221225574/index.m3u8
 #EXTINF:-1, group-title="地方频道", 吉林卫视
 http://223.110.245.147/ott.js.chinamobile.com/PLTV/3/224/3221226057/index.m3u8
 #EXTINF:-1, group-title="地方频道", 四川卫视
 http://223.110.245.145/ott.js.chinamobile.com/PLTV/3/224/3221225814/index.m3u8
 #EXTINF:-1, group-title="地方频道", 天津卫视
-http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221225808/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221227212/index.m3u8
 #EXTINF:-1, group-title="地方频道", 宁夏卫视
 http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221225842/index.m3u8
 #EXTINF:-1, group-title="地方频道", 安徽卫视
@@ -60,7 +60,7 @@ http://223.110.245.147/ott.js.chinamobile.com/PLTV/3/224/3221225634/index.m3u8
 #EXTINF:-1, group-title="地方频道", 山东卫视
 http://223.110.245.159/ott.js.chinamobile.com/PLTV/3/224/3221226003/index.m3u8
 #EXTINF:-1, group-title="地方频道", 山西卫视
-http://112.50.243.8/PLTV/88888888/224/3221225839/1.m3u8
+http://223.110.241.204:6610/gitv/live1/SXWS/SXWS/
 #EXTINF:-1, group-title="地方频道", 广东卫视
 http://223.110.245.145/ott.js.chinamobile.com/PLTV/3/224/3221227249/index.m3u8
 #EXTINF:-1, group-title="地方频道", 广西卫视
@@ -68,15 +68,15 @@ http://223.110.245.165/ott.js.chinamobile.com/PLTV/3/224/3221226055/index.m3u8
 #EXTINF:-1, group-title="地方频道", 新疆卫视
 http://223.110.241.204:6610/gitv/live1/G_XINJIANG/G_XINJIANG/
 #EXTINF:-1, group-title="地方频道", 江苏卫视
-http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221227255/index.m3u8
+http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221227185/index.m3u8
 #EXTINF:-1, group-title="地方频道", 江苏城市
 http://223.110.245.143/ott.js.chinamobile.com/PLTV/3/224/3221225929/index.m3u8
 #EXTINF:-1, group-title="地方频道", 江苏教育
 http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221225923/index.m3u8
 #EXTINF:-1, group-title="地方频道", 江西卫视
-http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221225536/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221225536/index.m3u8
 #EXTINF:-1, group-title="地方频道", 河北卫视
-http://223.110.245.165/ott.js.chinamobile.com/PLTV/3/224/3221225602/index.m3u8
+http://223.110.245.149/ott.js.chinamobile.com/PLTV/3/224/3221225840/index.m3u8
 #EXTINF:-1, group-title="地方频道", 河南卫视
 http://223.110.245.157/ott.js.chinamobile.com/PLTV/3/224/3221225815/index.m3u8
 #EXTINF:-1, group-title="地方频道", 浙江卫视
@@ -84,15 +84,17 @@ http://223.110.245.143/ott.js.chinamobile.com/PLTV/3/224/3221227483/index.m3u8
 #EXTINF:-1, group-title="地方频道", 湖北卫视
 http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221227377/index.m3u8
 #EXTINF:-1, group-title="地方频道", 湖南卫视
-http://223.110.245.147/ott.js.chinamobile.com/PLTV/3/224/3221225908/index.m3u8
+http://223.110.245.170/PLTV/3/224/3221227191/index.m3u8
 #EXTINF:-1, group-title="地方频道", 甘肃卫视
 http://223.110.245.161/ott.js.chinamobile.com/PLTV/3/224/3221226087/index.m3u8
 #EXTINF:-1, group-title="地方频道", 福建卫视
 http://223.110.241.204:6610/gitv/live1/DNWS/DNWS/
+#EXTINF:-1, group-title="地方频道", 西藏卫视
+http://223.110.245.170/PLTV/3/224/3221225579/index.m3u8
 #EXTINF:-1, group-title="地方频道", 贵州卫视
 http://223.110.245.149/ott.js.chinamobile.com/PLTV/3/224/3221225787/index.m3u8
 #EXTINF:-1, group-title="地方频道", 辽宁卫视
-http://223.110.245.147/ott.js.chinamobile.com/PLTV/3/224/3221226061/index.m3u8
+http://223.110.245.145/ott.js.chinamobile.com/PLTV/3/224/3221227410/index.m3u8
 #EXTINF:-1, group-title="地方频道", 重庆卫视
 http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221225594/index.m3u8
 #EXTINF:-1, group-title="地方频道", 陕西卫视
@@ -127,12 +129,14 @@ http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221225949/index.m3u8
 http://223.110.245.165/ott.js.chinamobile.com/PLTV/3/224/3221225945/index.m3u8
 #EXTINF:-1, group-title="地方频道", 徐州2
 http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221225947/index.m3u8
+#EXTINF:-1, group-title="地方频道", 徐州4
+http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221225951/index.m3u8
 #EXTINF:-1, group-title="地方频道", 东方财经
 http://223.110.245.157/ott.js.chinamobile.com/PLTV/3/224/3221226033/index.m3u8
 #EXTINF:-1, group-title="地方频道", 南京教科
 http://223.110.245.155/ott.js.chinamobile.com/PLTV/3/224/3221227194/index.m3u8
 #EXTINF:-1, group-title="地方频道", 厦门卫视
-http://223.110.245.159/ott.js.chinamobile.com/PLTV/3/224/3221226996/index.m3u8
+http://223.110.245.145/ott.js.chinamobile.com/PLTV/3/224/3221226093/index.m3u8
 #EXTINF:-1, group-title="地方频道", 宿迁公共
 http://223.110.245.153/ott.js.chinamobile.com/PLTV/3/224/3221226939/index.m3u8
 #EXTINF:-1, group-title="地方频道", 深圳卫视
@@ -144,7 +148,7 @@ http://223.110.245.147/ott.js.chinamobile.com/PLTV/3/224/3221227389/index.m3u8
 #EXTINF:-1, group-title="地方频道", 深圳卫视高清
 http://112.50.243.8/PLTV/88888888/224/3221225848/1.m3u8
 #EXTINF:-1, group-title="其他频道", Be
-http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221226942/index.m3u8
+http://223.110.245.165/ott.js.chinamobile.com/PLTV/3/224/3221226935/index.m3u8
 #EXTINF:-1, group-title="其他频道", TV
 http://223.110.245.153/ott.js.chinamobile.com/PLTV/3/224/3221227005/index.m3u8
 #EXTINF:-1, group-title="其他频道", 徐峥
@@ -180,7 +184,11 @@ http://ws4.streamhls.huya.com/huyalive/30765679-2523417522-10837995731143360512-
 #EXTINF:-1, group-title="其他频道", CETV
 http://223.110.241.204:6610/gitv/live1/G_CETV-3/G_CETV-3/
 #EXTINF:-1, group-title="其他频道", CGTN
-http://223.110.245.149/ott.js.chinamobile.com/PLTV/3/224/3221225917/index.m3u8
+http://223.110.241.204:6610/gitv/live1/G_CCTV-NEWS/G_CCTV-NEWS/
+#EXTINF:-1, group-title="其他频道", CNC1
+http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221227441/index.m3u8
+#EXTINF:-1, group-title="其他频道", CNC2
+http://223.110.245.170/PLTV/3/224/3221227444/index.m3u8
 #EXTINF:-1, group-title="其他频道", 中华美食
 http://223.110.245.147/ott.js.chinamobile.com/PLTV/3/224/3221227024/index.m3u8
 #EXTINF:-1, group-title="其他频道", 中国交通
@@ -202,7 +210,7 @@ http://223.110.245.143/ott.js.chinamobile.com/PLTV/3/224/3221226097/index.m3u8
 #EXTINF:-1, group-title="其他频道", 卡酷少儿
 http://223.110.241.204:6610/gitv/live1/G_KAKU/G_KAKU/
 #EXTINF:-1, group-title="其他频道", 嘉佳卡通
-http://223.110.245.139:80/PLTV/4/224/3221227009/index.m3u8
+http://223.110.245.155/ott.js.chinamobile.com/PLTV/3/224/3221226099/index.m3u8
 #EXTINF:-1, group-title="其他频道", 国学频道
 http://223.110.241.204:6610/gitv/live1/G_GUOXUE/G_GUOXUE/
 #EXTINF:-1, group-title="其他频道", 家庭理财
@@ -218,7 +226,7 @@ http://tx.hls.huya.com/huyalive/29106097-2689447148-11551087544980471808-2789253
 #EXTINF:-1, group-title="其他频道", 旅游卫视
 http://112.50.243.8/PLTV/88888888/224/3221225855/1.m3u8
 #EXTINF:-1, group-title="其他频道", 炫动卡通
-http://223.110.245.139:80/PLTV/4/224/3221226388/index.m3u8
+http://223.110.245.157/ott.js.chinamobile.com/PLTV/3/224/3221225694/index.m3u8
 #EXTINF:-1, group-title="其他频道", 王晶导演
 https://aldirect.hls.huya.com/huyalive/94525224-2579683592-11079656661667807232-2847687574-10057-A-0-1_1200.m3u8
 #EXTINF:-1, group-title="其他频道", 生活频道
@@ -234,7 +242,7 @@ http://223.110.245.149/ott.js.chinamobile.com/PLTV/3/224/3221226029/index.m3u8
 #EXTINF:-1, group-title="其他频道", 金鹰卡通
 http://223.110.245.145/ott.js.chinamobile.com/PLTV/3/224/3221226303/index.m3u8
 #EXTINF:-1, group-title="其他频道", CETV1
-http://223.110.245.143/ott.js.chinamobile.com/PLTV/3/224/3221225622/index.m3u8
+http://223.110.245.143/ott.js.chinamobile.com/PLTV/3/224/3221227355/index.m3u8
 #EXTINF:-1, group-title="其他频道", CETV2
 http://223.110.241.204:6610/gitv/live1/G_CETV-2/G_CETV-2/
 #EXTINF:-1, group-title="其他频道", CETV4
@@ -250,7 +258,7 @@ http://aldirect.hls.huya.com/huyalive/29169025-2686219962-11537226886652362752-2
 #EXTINF:-1, group-title="其他频道", 中国气象频道
 http://223.110.245.157/ott.js.chinamobile.com/PLTV/3/224/3221227438/index.m3u8
 #EXTINF:-1, group-title="其他频道", NewTV搏击
-http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221226656/index.m3u8
+http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221226803/index.m3u8
 #EXTINF:-1, group-title="其他频道", 徐老师LOL故事
 http://aldirect.hls.huya.com/huyalive/28466698-2689658976-11551997339312848896-2789274534-10057-A-0-1_1200.m3u8
 #EXTINF:-1, group-title="其他频道", 赌神全集新木乃伊
@@ -261,12 +269,14 @@ http://223.110.245.157/ott.js.chinamobile.com/PLTV/3/224/3221225545/index.m3u8
 http://223.110.245.161/ott.js.chinamobile.com/PLTV/3/224/3221225555/index.m3u8
 #EXTINF:-1, group-title="其他频道", NewTV家庭剧场
 http://223.110.245.149/ott.js.chinamobile.com/PLTV/3/224/3221225549/index.m3u8
+#EXTINF:-1, group-title="其他频道", NewTV惊悚悬疑
+http://223.110.245.170/PLTV/3/224/3221225561/index.m3u8
 #EXTINF:-1, group-title="其他频道", NewTV明星大片
 http://223.110.245.159/ott.js.chinamobile.com/PLTV/3/224/3221225535/index.m3u8
 #EXTINF:-1, group-title="其他频道", NewTV海外剧场
 http://223.110.245.155/ott.js.chinamobile.com/PLTV/3/224/3221225547/index.m3u8
 #EXTINF:-1, group-title="其他频道", NewTV潮妈辣婆
-http://223.110.245.170/PLTV/3/224/3221226983/index.m3u8
+http://223.110.245.170/ott.js.chinamobile.com/PLTV/3/224/3221226983/index.m3u8
 #EXTINF:-1, group-title="其他频道", NewTV精品大剧
 http://223.110.245.163/ott.js.chinamobile.com/PLTV/3/224/3221225569/index.m3u8
 #EXTINF:-1, group-title="其他频道", NewTV精品电影
