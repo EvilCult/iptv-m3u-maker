@@ -12,7 +12,7 @@ import socket
 import time
 import area
 
-socket.setdefaulttimeout(10.0)
+socket.setdefaulttimeout(5.0)
 
 class Tools (object) :
 
@@ -110,6 +110,8 @@ class Tools (object) :
 
         Area = area.Area()
         result['level'] = Area.classify(str(result['id']) + str(result['title']))
+
+        # Radio
 
         return result
 

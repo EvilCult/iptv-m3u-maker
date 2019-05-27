@@ -21,7 +21,7 @@ class Source (object) :
                 line = lines[i].strip('\n')
                 item = line.split(',', 1)
 
-                print('Checking:' + str(item[0]))
+                print('Checking[' + str(i) + ']:' + str(item[0]))
                 netstat = self.T.chkPlayable(item[1])
 
                 if netstat > 0 :
