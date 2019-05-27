@@ -12,7 +12,7 @@ import socket
 import time
 import area
 
-socket.setdefaulttimeout(10.0)
+socket.setdefaulttimeout(5.0)
 
 class Tools (object) :
 
@@ -104,21 +104,22 @@ class Tools (object) :
         if result['id'] != '':
             pattern = re.compile(r"cctv[-|\s]*(\d*)", re.I)
             result['id'] = re.sub(pattern, "CCTV-\\1", result['id'])
-            
+
             if '+' in result['title'] :
                 result['id'] = result['id'] + str('+')
 
         Area = area.Area()
         result['level'] = Area.classify(str(result['id']) + str(result['title']))
 
+        # Radio
+
         return result
 
     def chkPlayable (self, url) :
         try:
             startTime = int(round(time.time() * 1000))
-            res = self.getPage(url)
-
-            if res['code'] == 200 :
+            code = urllib.request.urlopen(url).getcode()
+            if code == 200 :
                 endTime = int(round(time.time() * 1000))
                 useTime = endTime - startTime
                 return int(useTime)

@@ -28,9 +28,10 @@ class Source (object) :
             sourceList = pattern.findall(tmp[0])
 
             for item in sourceList :
-                print('Checking:' + str(item[0]))
+                i = 1
+                print('Checking[' + str(i) + ']:' + str(item[0]))
                 netstat = self.T.chkPlayable(item[1])
-
+                i = i + 1
                 if netstat > 0 :
                     info = self.T.fmtTitle(item[0])
 
