@@ -25,6 +25,7 @@ python main.py
 ---
 - https://www.jianshu.com/p/2499255c7e79
 - https://github.com/billy21/Tvlist-awesome-m3u-m3u8
+- V2ex - [Dotpy](https://www.v2ex.com/member/Dotpy) 提供1600+可用播放源
 
 #### 运行环境
 ---

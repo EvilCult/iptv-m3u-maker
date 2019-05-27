@@ -7,6 +7,7 @@ import time
 import re
 from plugins import base
 from plugins import lista
+from plugins import dotpy
 
 class Iptv (object):
 
@@ -22,6 +23,11 @@ class Iptv (object):
 
         listA = lista.Source()
         urlList = listA.getSource()
+        for item in urlList :
+            self.addData(item)
+
+        Dotpy = dotpy.Source()
+        urlList = Dotpy.getSource()
         for item in urlList :
             self.addData(item)
 
