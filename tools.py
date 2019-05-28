@@ -123,6 +123,10 @@ class Tools (object) :
         result['level'] = Area.classify(str(result['id']) + str(result['title']))
 
         # Radio
+        pattern = re.compile(r"(radio|fm)", re.I)
+        tmp = pattern.findall(result['title'])
+        if len(tmp) > 0 :
+            result['level'] = 7
 
         return result
 

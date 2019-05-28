@@ -17,11 +17,12 @@ class Source (object) :
         sourcePath = './plugins/dotpy_source'
         with open(sourcePath, 'r') as f:
             lines = f.readlines()
-            for i in range(0, len(lines)):
+            total = len(lines)
+            for i in range(0, total):
                 line = lines[i].strip('\n')
                 item = line.split(',', 1)
 
-                print('Checking[' + str(i) + ']:' + str(item[0]))
+                print('Checking[ %s / %s ]: %s' % (i, total,  str(item[0])))
                 netstat = self.T.chkPlayable(item[1])
 
                 if netstat > 0 :

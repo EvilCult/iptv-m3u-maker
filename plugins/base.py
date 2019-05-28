@@ -29,9 +29,10 @@ class Source (object) :
             sourceList = pattern.findall(tmp[0])
             sourceList = sourceList + pattern.findall(tmp[1])
 
+            i = 1
+            total = len(sourceList)
             for item in sourceList :
-                i = 1
-                print('Checking[' + str(i) + ']:' + str(item[0]))
+                print('Checking[ %s / %s ]: %s' % (i, total,  str(item[0])))
                 i = i + 1
                 netstat = self.T.chkPlayable(item[1])
 

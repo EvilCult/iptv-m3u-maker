@@ -27,9 +27,10 @@ class Source (object) :
             pattern = re.compile(r"</svg></a>(.*?)</h.*?href=\"(.*?)\"", re.I|re.S)
             sourceList = pattern.findall(tmp[0])
 
+            i = 1
+            total = len(sourceList)
             for item in sourceList :
-                i = 1
-                print('Checking[' + str(i) + ']:' + str(item[0]))
+                print('Checking[ %s / %s ]: %s' % (i, total,  str(item[0])))
                 netstat = self.T.chkPlayable(item[1])
                 i = i + 1
                 if netstat > 0 :

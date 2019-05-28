@@ -28,10 +28,10 @@ class Iptv (object):
 
         Dotpy = dotpy.Source()
         urlList = Dotpy.getSource()
-        # for item in urlList :
-        #     self.addData(item)
+        for item in urlList :
+            self.addData(item)
 
-        # self.outPut()
+        self.outPut()
         print("DONE!!")
 
     def addData (self, data) :
