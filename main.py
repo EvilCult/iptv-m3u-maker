@@ -28,10 +28,10 @@ class Iptv (object):
 
         Dotpy = dotpy.Source()
         urlList = Dotpy.getSource()
-        for item in urlList :
-            self.addData(item)
+        # for item in urlList :
+        #     self.addData(item)
 
-        self.outPut()
+        # self.outPut()
         print("DONE!!")
 
     def addData (self, data) :
@@ -69,6 +69,13 @@ class Iptv (object):
 
                 f.write("#EXTINF:-1, group-title=\"%s\", %s\n" % (className, item[1]))
                 f.write("%s\n" % (item[3]))
+
+    # def test (self) :
+    #     line = 'SkyFolkTV,http://skyfolk.mk/live.m3u8'
+    #     item = line.split(',', 1)
+    #     info = self.T.fmtTitle(item[0])
+
+    #     print(info)
 
 obj = Iptv()
 obj.run()
