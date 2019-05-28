@@ -16,15 +16,15 @@ class Iptv (object):
         self.DB = db.DataBase()
 
     def run(self) :
-        # Base = base.Source()
-        # urlList = Base.getSource()
-        # for item in urlList :
-        #     self.addData(item)
+        Base = base.Source()
+        urlList = Base.getSource()
+        for item in urlList :
+            self.addData(item)
 
-        # listA = lista.Source()
-        # urlList = listA.getSource()
-        # for item in urlList :
-        #     self.addData(item)
+        listA = lista.Source()
+        urlList = listA.getSource()
+        for item in urlList :
+            self.addData(item)
 
         Dotpy = dotpy.Source()
         urlList = Dotpy.getSource()
@@ -49,7 +49,7 @@ class Iptv (object):
         sql = """SELECT * FROM
             (SELECT * FROM %s WHERE online = 1 ORDER BY delay DESC) AS delay
             GROUP BY delay.title
-            HAVING delay.title != '' and delay.title != 'CCTV-'
+            HAVING delay.title != '' and delay.title != 'CCTV-' AND delay.delay < 500
             ORDER BY level ASC, length(title) ASC, title ASC
             """ % (self.DB.table)
         result = self.DB.query(sql)

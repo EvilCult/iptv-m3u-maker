@@ -91,13 +91,24 @@ class Tools (object) :
             return data
 
     def fmtTitle (self, string) :
-        pattern = re.compile(r"(cctv[-|\s]*\d*)*\s*?([^fhd|^hd|^sd|^\.m3u8]*)\s*?(fhd|hd|sd)*", re.I)
-        tmp = pattern.findall(string)[0]
+        pattern = re.compile(r"(cctv[-|\s]*\d*)?(.*)", re.I)
+        tmp = pattern.findall(string)
+        channelId = tmp[0][0].strip('-').strip()
+        channeTitle = tmp[0][1]
+
+        channeTitle = channeTitle.replace('.m3u8', '')
+
+        pattern = re.compile(r"(fhd|hd|sd)", re.I)
+        tmp = pattern.findall(channeTitle)
+        quality = ''
+        if len(tmp) > 0 :
+            quality = tmp[0]
+            channeTitle = channeTitle.replace(tmp[0], '')
 
         result = {
-            'id'     : tmp[0].strip('-').strip(),
-            'title'  : tmp[1].strip('-').strip(),
-            'quality': tmp[2].strip('-').strip(),
+            'id'     : channelId,
+            'title'  : channeTitle.strip('-').strip(),
+            'quality': quality.strip('-').strip(),
             'level'  : 4,
         }
 
@@ -112,6 +123,10 @@ class Tools (object) :
         result['level'] = Area.classify(str(result['id']) + str(result['title']))
 
         # Radio
+        pattern = re.compile(r"(radio|fm)", re.I)
+        tmp = pattern.findall(result['title'])
+        if len(tmp) > 0 :
+            result['level'] = 7
 
         return result
 
