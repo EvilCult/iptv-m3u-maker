@@ -54,7 +54,7 @@ class Iptv (object):
     def outPut (self) :
         sql = """SELECT * FROM
             (SELECT * FROM %s WHERE online = 1 ORDER BY delay DESC) AS delay
-            GROUP BY delay.title
+            GROUP BY LOWER(delay.title)
             HAVING delay.title != '' and delay.title != 'CCTV-' AND delay.delay < 500
             ORDER BY level ASC, length(title) ASC, title ASC
             """ % (self.DB.table)
@@ -78,9 +78,9 @@ class Iptv (object):
                 f.write("#EXTINF:-1, group-title=\"%s\", %s\n" % (className, item[1]))
                 f.write("%s\n" % (item[3]))
 
-
-obj = Iptv()
-obj.run()
+if __name__ == '__main__':
+    obj = Iptv()
+    obj.run()
 
 
 
