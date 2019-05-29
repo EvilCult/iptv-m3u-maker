@@ -7,6 +7,7 @@ import time
 import re
 from plugins import base
 from plugins import lista
+from plugins import listb
 from plugins import dotpy
 
 class Iptv (object):
@@ -23,6 +24,11 @@ class Iptv (object):
 
         listA = lista.Source()
         urlList = listA.getSource()
+        for item in urlList :
+            self.addData(item)
+
+        listB = listb.Source()
+        urlList = listB.getSource()
         for item in urlList :
             self.addData(item)
 
@@ -64,11 +70,14 @@ class Iptv (object):
                     className = '地方频道'
                 elif item[4] == 3 :
                     className = '地方频道'
+                elif item[4] == 7 :
+                    className = '广播频道'
                 else :
                     className = '其他频道'
 
                 f.write("#EXTINF:-1, group-title=\"%s\", %s\n" % (className, item[1]))
                 f.write("%s\n" % (item[3]))
+
 
 obj = Iptv()
 obj.run()
