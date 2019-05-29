@@ -119,6 +119,9 @@ class Tools (object) :
             if '+' in result['title'] :
                 result['id'] = result['id'] + str('+')
 
+        pattern = re.compile(r"\[\d+\*\d+\]", re.I)
+        result['title'] = re.sub(pattern, "", result['title'])
+
         Area = area.Area()
         result['level'] = Area.classify(str(result['id']) + str(result['title']))
 
