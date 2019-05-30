@@ -38,6 +38,7 @@ class Iptv (object):
             self.addData(item)
 
         self.outPut()
+
         print("DONE!!")
 
     def addData (self, data) :
@@ -77,6 +78,7 @@ class Iptv (object):
 
                 f.write("#EXTINF:-1, group-title=\"%s\", %s\n" % (className, item[1]))
                 f.write("%s\n" % (item[3]))
+
 
 if __name__ == '__main__':
     obj = Iptv()
