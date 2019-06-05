@@ -33,7 +33,17 @@ python main.py
 - https://www.jianshu.com/p/2499255c7e79
 - https://github.com/billy21/Tvlist-awesome-m3u-m3u8
 - V2ex - [Dotpy](https://www.v2ex.com/member/Dotpy) 提供1600+可用播放源
+- https://www.sheng521.top/zyfx/zbyfx
+- 第五个源还在考虑要不要加....
 
 #### 运行环境
 ---
-python3.7
+**python3.7**
+人生苦短,我用Docker,本脚本,开发&运行&测试环境均使用docker镜像完成
+
+
+两行命令构建
+```
+docker pull python:3.7
+docker run -it --name python3 -v {脚本所在滤镜}:{容器里随便你想要的路径} python:3.7
+```

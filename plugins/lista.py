@@ -34,6 +34,8 @@ class Source (object) :
                 netstat = self.T.chkPlayable(item[1])
                 i = i + 1
                 if netstat > 0 :
+                    cros = 1 if self.T.chkCros(item[1]) else 0
+
                     info = self.T.fmtTitle(item[0])
 
                     data = {
@@ -41,6 +43,7 @@ class Source (object) :
                         'url'    : str(item[1]),
                         'quality': str(info['quality']),
                         'delay'  : netstat,
+                        'cros'   : cros,
                         'level'  : info['level'],
                         'online' : 1,
                         'udTime' : self.now,
