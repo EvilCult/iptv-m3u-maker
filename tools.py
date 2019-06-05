@@ -147,9 +147,13 @@ class Tools (object) :
             return 0
 
     def chkCros (self, url) :
-        res = urllib.request.urlopen(url).getheader('Access-Control-Allow-Origin')
+        return 0
+        # try:
+        #     res = urllib.request.urlopen(url).getheader('Access-Control-Allow-Origin')
 
-        if res == '*' :
-            return True
-        else :
-            return False
+        #     if res == '*' :
+        #         return True
+        #     else :
+        #         return False
+        # except:
+        #     return 0
