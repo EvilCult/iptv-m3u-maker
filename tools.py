@@ -98,6 +98,9 @@ class Tools (object) :
 
         channeTitle = channeTitle.replace('.m3u8', '')
 
+        pattern = re.compile(r"<.*?>", re.I)
+        channeTitle = re.sub(pattern, "", channeTitle)
+
         pattern = re.compile(r"(fhd|hd|sd)", re.I)
         tmp = pattern.findall(channeTitle)
         quality = ''

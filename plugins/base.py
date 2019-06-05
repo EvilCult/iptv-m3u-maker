@@ -32,15 +32,14 @@ class Source (object) :
             i = 1
             total = len(sourceList)
             for item in sourceList :
-                print('Checking[ %s / %s ]: %s' % (i, total,  str(item[0])))
+                info = self.T.fmtTitle(item[0])
+                print('Checking[ %s / %s ]: %s' % (i, total, str(info['id']) + str(info['title'])))
+
                 i = i + 1
                 netstat = self.T.chkPlayable(item[1])
 
                 if netstat > 0 :
                     cros = 1 if self.T.chkCros(item[1]) else 0
-
-                    info = self.T.fmtTitle(item[0])
-
                     data = {
                         'title'  : str(info['id']) if info['id'] != '' else str(info['title']),
                         'url'    : str(item[1]),
