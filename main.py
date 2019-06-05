@@ -33,10 +33,10 @@ class Iptv (object):
         for item in urlList :
             self.addData(item)
 
-        # Dotpy = dotpy.Source()
-        # urlList = Dotpy.getSource()
-        # for item in urlList :
-        #     self.addData(item)
+        Dotpy = dotpy.Source()
+        urlList = Dotpy.getSource()
+        for item in urlList :
+            self.addData(item)
 
         self.outPut()
         self.outJson()
