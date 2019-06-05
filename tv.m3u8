@@ -1,10 +1,4 @@
 #EXTM3U
-#EXTINF:-1, group-title="中央频道", CCTV2
-http://220.158.149.14:9999/live/TV00000000000000000007@HHZT;LIVE
-#EXTINF:-1, group-title="中央频道", CCTV4
-http://220.158.149.14:9999/live/TV00000000000000000015@HHZT;LIVE
-#EXTINF:-1, group-title="中央频道", CCTV7
-http://220.158.149.14:9999/live/TV00000000000000000008@HHZT;LIVE
 #EXTINF:-1, group-title="中央频道", CCTV-1
 http://cctvcnch5c.v.wscdns.com/live/cctv1_2/index.m3u8
 #EXTINF:-1, group-title="中央频道", CCTV-2
@@ -391,8 +385,6 @@ http://hls.hsrtv.cn/hls/hstv2.m3u8
 http://hls.hsrtv.cn/hls/hstv1.m3u8
 #EXTINF:-1, group-title="地方频道", 东方卫视超清-8M
 http://223.110.241.204:6610/gitv/live1/G_DONGFANG-CQ/G_DONGFANG-CQ/
-#EXTINF:-1, group-title="其他频道", 4号
-http://220.158.149.14:9999/live/TV00000000000000000004@HHZT;LIVE
 #EXTINF:-1, group-title="其他频道", 偶像
 http://hls-ott-zhibo.wasu.tv/live/257/index.m3u8
 #EXTINF:-1, group-title="其他频道", 儿歌
@@ -421,112 +413,6 @@ http://116.199.5.51:8114/index.m3u8?Fsv_chan_hls_se_idx=12&amp;FvSeid=1&amp;Fsv_
 http://223.110.245.139:80/PLTV/4/224/3221227154/index.m3u8
 #EXTINF:-1, group-title="其他频道", 黄渤
 https://aldirect.hls.huya.com/huyalive/30765679-2554414680-10971127511022305280-3048991634-10057-A-0-1_1200.m3u8
-#EXTINF:-1, group-title="其他频道", 22号
-http://220.158.149.14:9999/live/TV00000000000000000022@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 23号
-http://220.158.149.14:9999/live/TV00000000000000000023@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 24号
-http://220.158.149.14:9999/live/TV00000000000000000024@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 25号
-http://220.158.149.14:9999/live/TV00000000000000000025@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 26号
-http://220.158.149.14:9999/live/TV00000000000000000026@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 27号
-http://220.158.149.14:9999/live/TV00000000000000000027@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 28号
-http://220.158.149.14:9999/live/TV00000000000000000028@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 29号
-http://220.158.149.14:9999/live/TV00000000000000000029@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 30号
-http://220.158.149.14:9999/live/TV00000000000000000030@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 34号
-http://220.158.149.14:9999/live/TV00000000000000000034@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 37号
-http://220.158.149.14:9999/live/TV00000000000000000037@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 38号
-http://220.158.149.14:9999/live/TV00000000000000000038@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 39号
-http://220.158.149.14:9999/live/TV00000000000000000039@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 40号
-http://220.158.149.14:9999/live/TV00000000000000000040@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 41号
-http://220.158.149.14:9999/live/TV00000000000000000041@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 43号
-http://220.158.149.14:9999/live/TV00000000000000000043@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 44号
-http://220.158.149.14:9999/live/TV00000000000000000044@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 45号
-http://220.158.149.14:9999/live/TV00000000000000000045@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 46号
-http://220.158.149.14:9999/live/TV00000000000000000046@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 47号
-http://220.158.149.14:9999/live/TV00000000000000000047@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 48号
-http://220.158.149.14:9999/live/TV00000000000000000048@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 49号
-http://220.158.149.14:9999/live/TV00000000000000000049@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 50号
-http://220.158.149.14:9999/live/TV00000000000000000050@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 51号
-http://220.158.149.14:9999/live/TV00000000000000000051@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 52号
-http://220.158.149.14:9999/live/TV00000000000000000052@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 53号
-http://220.158.149.14:9999/live/TV00000000000000000053@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 54号
-http://220.158.149.14:9999/live/TV00000000000000000054@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 55号
-http://220.158.149.14:9999/live/TV00000000000000000055@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 56号
-http://220.158.149.14:9999/live/TV00000000000000000056@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 57号
-http://220.158.149.14:9999/live/TV00000000000000000057@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 58号
-http://220.158.149.14:9999/live/TV00000000000000000058@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 59号
-http://220.158.149.14:9999/live/TV00000000000000000059@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 60号
-http://220.158.149.14:9999/live/TV00000000000000000060@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 61号
-http://220.158.149.14:9999/live/TV00000000000000000061@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 62号
-http://220.158.149.14:9999/live/TV00000000000000000062@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 64号
-http://220.158.149.14:9999/live/TV00000000000000000064@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 65号
-http://220.158.149.14:9999/live/TV00000000000000000065@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 66号
-http://220.158.149.14:9999/live/TV00000000000000000066@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 67号
-http://220.158.149.14:9999/live/TV00000000000000000067@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 69号
-http://220.158.149.14:9999/live/TV00000000000000000069@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 73号
-http://220.158.149.14:9999/live/TV00000000000000000073@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 74号
-http://220.158.149.14:9999/live/TV00000000000000000074@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 75号
-http://220.158.149.14:9999/live/TV00000000000000000075@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 76号
-http://220.158.149.14:9999/live/TV00000000000000000076@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 78号
-http://220.158.149.14:9999/live/TV00000000000000000078@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 79号
-http://220.158.149.14:9999/live/TV00000000000000000079@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 80号
-http://220.158.149.14:9999/live/TV00000000000000000080@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 81号
-http://220.158.149.14:9999/live/TV00000000000000000081@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 82号
-http://220.158.149.14:9999/live/TV00000000000000000082@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 83号
-http://220.158.149.14:9999/live/TV00000000000000000083@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 88号
-http://220.158.149.14:9999/live/TV00000000000000000088@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 91号
-http://220.158.149.14:9999/live/TV00000000000000000091@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 92号
-http://220.158.149.14:9999/live/TV00000000000000000092@HHZT;LIVE
 #EXTINF:-1, group-title="其他频道", ETV
 http://223.110.245.149/ott.js.chinamobile.com/PLTV/3/224/3221227019/index.m3u8
 #EXTINF:-1, group-title="其他频道", ICS
@@ -583,46 +469,6 @@ http://223.110.241.204:6610/gitv/live1/G_LAOGUSHI/G_LAOGUSHI/
 http://dlhls.live.cnlive.com:1935/cdn/cheshijie/playlist.m3u8?k=a96eca0d06c1f4929bb1d42af9b11c94&amp;t=1453173747
 #EXTINF:-1, group-title="其他频道", 高尔夫
 http://223.110.241.204:6610/gitv/live1/G_GAOERFU/G_GAOERFU/
-#EXTINF:-1, group-title="其他频道", 102号
-http://220.158.149.14:9999/live/TV00000000000000000102@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 103号
-http://220.158.149.14:9999/live/TV00000000000000000103@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 104号
-http://220.158.149.14:9999/live/TV00000000000000000104@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 106号
-http://220.158.149.14:9999/live/TV00000000000000000106@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 108号
-http://220.158.149.14:9999/live/TV00000000000000000108@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 111号
-http://220.158.149.14:9999/live/TV00000000000000000111@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 112号
-http://220.158.149.14:9999/live/TV00000000000000000112@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 113号
-http://220.158.149.14:9999/live/TV00000000000000000113@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 115号
-http://220.158.149.14:9999/live/TV00000000000000000115@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 116号
-http://220.158.149.14:9999/live/TV00000000000000000116@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 120号
-http://220.158.149.14:9999/live/TV00000000000000000120@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 121号
-http://220.158.149.14:9999/live/TV00000000000000000121@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 122号
-http://220.158.149.14:9999/live/TV00000000000000000122@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 123号
-http://220.158.149.14:9999/live/TV00000000000000000123@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 160号
-http://220.158.149.14:9999/live/TV00000000000000000160@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 166号
-http://220.158.149.14:9999/live/TV00000000000000000166@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 167号
-http://220.158.149.14:9999/live/TV00000000000000000167@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 168号
-http://220.158.149.14:9999/live/TV00000000000000000168@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 169号
-http://220.158.149.14:9999/live/TV00000000000000000169@HHZT;LIVE
-#EXTINF:-1, group-title="其他频道", 170号
-http://220.158.149.14:9999/live/TV00000000000000000170@HHZT;LIVE
 #EXTINF:-1, group-title="其他频道", CGTN
 http://223.110.245.149/ott.js.chinamobile.com/PLTV/3/224/3221225917/index.m3u8
 #EXTINF:-1, group-title="其他频道", DDTV
