@@ -12,6 +12,7 @@
 
 **!!!这个项目的代码还在进行中!!!**
 
+
 #### 使用方法
 ---
 项目根目录执行
@@ -21,6 +22,13 @@ python main.py
 即可
 
 建议以docker的方式,直接在路由器上运行,本地检测地址访问,更为精准.
+
+#### 相关项目
+「[iptv-m3u-player](https://github.com/EvilCult/iptv-m3u-player)」
+基于本项目的衍生项目, 基于Electron+React编写的一个轻量级桌面客户端.频道数据会随本项目更新.
+
+Android TV上有Kodi, iOS上有Cloud Stream, PC/Mac上不知道用什么客户端的,可以试试这个:[iptv-m3u-player](https://github.com/EvilCult/iptv-m3u-player)
+
 
 #### 已知问题
 - 访问速度慢,视频卡顿
