@@ -8,7 +8,7 @@ import re
 import json
 from plugins import base
 from plugins import lista
-from plugins import listb
+# from plugins import listb
 from plugins import dotpy
 
 class Iptv (object):
@@ -28,10 +28,10 @@ class Iptv (object):
         for item in urlList :
             self.addData(item)
 
-        listB = listb.Source()
-        urlList = listB.getSource()
-        for item in urlList :
-            self.addData(item)
+        # listB = listb.Source()
+        # urlList = listB.getSource()
+        # for item in urlList :
+        #     self.addData(item)
 
         Dotpy = dotpy.Source()
         urlList = Dotpy.getSource()
