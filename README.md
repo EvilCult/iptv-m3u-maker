@@ -2,7 +2,7 @@
 
  [项目详细说明](https://evilcult.dev/07/19/2019/IPTV-Projects/)
 
- [项目更新记录](http://localhost:4000/tags/iptv-m3u-maker/)
+ [项目更新记录](https://evilcult.dev/tags/iptv-m3u-maker/)
 
 ## 简介
 ---
