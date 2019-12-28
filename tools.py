@@ -48,6 +48,10 @@ class Tools (object) :
             header = e.headers
             body = e.read().decode('utf-8')
             code = e.code
+        except:
+            header = ''
+            body = ''
+            code = 500
 
         result = {
             'code': code,
