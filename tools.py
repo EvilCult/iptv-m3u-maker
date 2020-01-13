@@ -61,6 +61,25 @@ class Tools (object) :
 
         return result
 
+    def getRealUrl (self, url, requestHeader = []) :
+        fakeIp = self.fakeIp()
+        requestHeader.append('CLIENT-IP:' + fakeIp)
+        requestHeader.append('X-FORWARDED-FOR:' + fakeIp)
+
+        request = urllib.request.Request(url)
+
+        for x in requestHeader :
+            headerType = x.split(':')[0]
+            headerCon = x.replace(headerType + ':', '')
+            request.add_header(headerType, headerCon)
+        try :
+            response = urllib.request.urlopen(request)
+            realUrl = response.geturl()
+        except :
+            realUrl = ""
+        
+        return realUrl
+
     def fakeIp (self) :
         fakeIpList = []
 
