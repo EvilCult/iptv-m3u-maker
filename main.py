@@ -7,7 +7,7 @@ import time
 import re
 import json
 from plugins import base
-from plugins import lista
+# from plugins import lista
 from plugins import listb
 from plugins import dotpy
 
@@ -19,40 +19,23 @@ class Iptv (object):
 
     def run(self) :
         Base = base.Source()
-        urlList = Base.getSource()
-        for item in urlList :
-            self.addData(item)
-
-        # listA = lista.Source()
-        # urlList = listA.getSource()
-        # for item in urlList :
-        #     self.addData(item)
-
-        listB = listb.Source()
-        urlList = listB.getSource()
-        for item in urlList :
-            self.addData(item)
+        Base.getSource()
 
         Dotpy = dotpy.Source()
-        urlList = Dotpy.getSource()
-        for item in urlList :
-            self.addData(item)
+        Dotpy.getSource()
+
+        listB = listb.Source()
+        listB.getSource()
+
+        # # listA = lista.Source()
+        # # urlList = listA.getSource()
+        # # for item in urlList :
+        # #     self.addData(item)
 
         self.outPut()
         self.outJson()
 
         print("DONE!!")
-
-    def addData (self, data) :
-        sql = "SELECT * FROM %s WHERE url = '%s'" % (self.DB.table, data['url'])
-        result = self.DB.query(sql)
-
-        if len(result) == 0 :
-            data['enable'] = 1
-            self.DB.insert(data)
-        else :
-            id = result[0][0]
-            self.DB.edit(id, data)
 
     def outPut (self) :
         sql = """SELECT * FROM
