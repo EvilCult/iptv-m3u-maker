@@ -18,21 +18,19 @@ class Iptv (object):
         self.DB = db.DataBase()
 
     def run(self) :
-        # Base = base.Source()
-        # Base.getSource()
+        Base = base.Source()
+        Base.getSource()
+
+        Dotpy = dotpy.Source()
+        Dotpy.getSource()
+
+        listB = listb.Source()
+        listB.getSource()
 
         # # listA = lista.Source()
         # # urlList = listA.getSource()
         # # for item in urlList :
         # #     self.addData(item)
-
-        # listB = listb.Source()
-        # urlList = listB.getSource()
-        # for item in urlList :
-        #     self.addData(item)
-
-        Dotpy = dotpy.Source()
-        Dotpy.getSource()
 
         self.outPut()
         self.outJson()
