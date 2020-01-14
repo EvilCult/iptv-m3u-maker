@@ -18,8 +18,8 @@ class Iptv (object):
         self.DB = db.DataBase()
 
     def run(self) :
-        Base = base.Source()
-        urlList = Base.getSource()
+        # Base = base.Source()
+        # Base.getSource()
 
         # # listA = lista.Source()
         # # urlList = listA.getSource()
@@ -31,10 +31,8 @@ class Iptv (object):
         # for item in urlList :
         #     self.addData(item)
 
-        # Dotpy = dotpy.Source()
-        # urlList = Dotpy.getSource()
-        # for item in urlList :
-        #     self.addData(item)
+        Dotpy = dotpy.Source()
+        Dotpy.getSource()
 
         self.outPut()
         self.outJson()
