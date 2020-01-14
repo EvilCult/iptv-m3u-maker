@@ -17,9 +17,9 @@
 
 ### 目前进度
 
-目前库存频道总数: 2269
+目前库存频道总数: 4523
 
-已放出优质频道总是: 563
+已放出优质频道总是: 687
 
 **!!! 项目持续更新中 !!!**
 
@@ -27,9 +27,8 @@
 ## 数据来源
 ---
 - https://www.jianshu.com/p/2499255c7e79
-- https://github.com/billy21/Tvlist-awesome-m3u-m3u8
 - V2ex - [Dotpy](https://www.v2ex.com/member/Dotpy) 提供1600+可用播放源
-- https://www.sheng521.top/zyfx/zbyfx
+- http://iptv807.com/
 
 更多来源还在考虑要不要加入....
 

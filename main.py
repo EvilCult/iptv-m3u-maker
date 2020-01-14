@@ -23,10 +23,10 @@ class Iptv (object):
         for item in urlList :
             self.addData(item)
 
-        listA = lista.Source()
-        urlList = listA.getSource()
-        for item in urlList :
-            self.addData(item)
+        # listA = lista.Source()
+        # urlList = listA.getSource()
+        # for item in urlList :
+        #     self.addData(item)
 
         listB = listb.Source()
         urlList = listB.getSource()
