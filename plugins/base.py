@@ -4,6 +4,8 @@
 import tools
 import time
 import re
+import db
+import threading
 
 class Source (object) :
 
@@ -29,31 +31,49 @@ class Source (object) :
             sourceList = pattern.findall(tmp[0])
             sourceList = sourceList + pattern.findall(tmp[1])
 
-            i = 1
-            total = len(sourceList)
+            threads = []
             for item in sourceList :
-                info = self.T.fmtTitle(item[0])
-                print('Checking[ %s / %s ]: %s' % (i, total, str(info['id']) + str(info['title'])))
-
-                i = i + 1
-                netstat = self.T.chkPlayable(item[1])
-
-                if netstat > 0 :
-                    cros = 1 if self.T.chkCros(item[1]) else 0
-                    data = {
-                        'title'  : str(info['id']) if info['id'] != '' else str(info['title']),
-                        'url'    : str(item[1]),
-                        'quality': str(info['quality']),
-                        'delay'  : netstat,
-                        'level'  : str(info['level']),
-                        'cros'   : cros,
-                        'online' : 1,
-                        'udTime' : self.now,
-                    }
-                    urlList.append(data)
-                else :
-                    pass # MAYBE later :P
+                thread = threading.Thread(target = self.detectData, args = (item[0], item[1], ), daemon = True)
+                thread.start()
+                threads.append(thread)
+            for t in threads:
+                t.join()
         else :
             pass # MAYBE later :P
 
         return urlList
+
+    def detectData (self, title, url) :
+        info = self.T.fmtTitle(title)
+        
+        netstat = self.T.chkPlayable(url)
+
+        if netstat > 0 :
+            cros = 1 if self.T.chkCros(url) else 0
+            data = {
+                'title'  : str(info['id']) if info['id'] != '' else str(info['title']),
+                'url'    : str(url),
+                'quality': str(info['quality']),
+                'delay'  : netstat,
+                'level'  : str(info['level']),
+                'cros'   : cros,
+                'online' : 1,
+                'udTime' : self.now,
+            }
+            
+            self.addData(data)
+            print('Checking[ %s ]: %s' % (str(info['id']) + str(info['title']), url))
+        else :
+            pass # MAYBE later :P
+
+    def addData (self, data) :
+        DB = db.DataBase()
+        sql = "SELECT * FROM %s WHERE url = '%s'" % (DB.table, data['url'])
+        result = DB.query(sql)
+
+        if len(result) == 0 :
+            data['enable'] = 1
+            DB.insert(data)
+        else :
+            id = result[0][0]
+            DB.edit(id, data)
