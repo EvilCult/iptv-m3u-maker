@@ -49,9 +49,9 @@ class Tools (object) :
             body = e.read().decode('utf-8')
             code = e.code
         except:
-             header = ''
-             body = ''
-             code = 500
+            header = ''
+            body = ''
+            code = 500
 
         result = {
             'code': code,
