@@ -14,25 +14,38 @@ class Source (object) :
         self.now = int(time.time() * 1000)
 
     def getSource (self) :
-        sourcePath = './plugins/dotpy_source'
-        with open(sourcePath, 'r') as f:
-            lines = f.readlines()
-            total = len(lines)
-            threads = []
+        urlList = []
 
-            for i in range(0, total):
-                line = lines[i].strip('\n')
-                item = line.split(',', 1)
+        url = 'https://www.jianshu.com/p/2499255c7e79'
+        req = [
+            'user-agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Mobile Safari/537.36',
+        ]
+        res = self.T.getPage(url, req)
+
+        if res['code'] == 200 :
+            pattern = re.compile(r"<code(.*?)</code>", re.I|re.S)
+            tmp = pattern.findall(res['body'])
+
+            pattern = re.compile(r"#EXTINF:0,(.*?)\n#EXTVLCOPT:network-caching=1000\n(.*?)\n", re.I|re.S)
+
+            sourceList = pattern.findall(tmp[0])
+            sourceList = sourceList + pattern.findall(tmp[1])
+
+            threads = []
+            for item in sourceList :
                 thread = threading.Thread(target = self.detectData, args = (item[0], item[1], ), daemon = True)
                 thread.start()
                 threads.append(thread)
-
             for t in threads:
                 t.join()
+        else :
+            pass # MAYBE later :P
+
+        return urlList
 
     def detectData (self, title, url) :
         info = self.T.fmtTitle(title)
-
+        
         netstat = self.T.chkPlayable(url)
 
         if netstat > 0 :
@@ -42,13 +55,14 @@ class Source (object) :
                 'url'    : str(url),
                 'quality': str(info['quality']),
                 'delay'  : netstat,
-                'level'  : info['level'],
+                'level'  : str(info['level']),
                 'cros'   : cros,
                 'online' : 1,
                 'udTime' : self.now,
             }
+            
             self.addData(data)
-            print('Checking[ %s ]: %s' % (str(info['id']) + str(info['title']), url))
+            self.T.logger('正在分析[ %s ]: %s' % (str(info['id']) + str(info['title']), url))
         else :
             pass # MAYBE later :P
 

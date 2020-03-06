@@ -4,11 +4,12 @@
 import sqlite3
 import getpass
 import os
+import time
 
 class DataBase (object) :
 
     def __init__ (self) :
-        self.dbAddress = os.getcwd() + '/'
+        self.dbAddress = os.path.dirname(os.path.abspath(__file__)).replace('python', 'database')
 
         self.table = 'lists'
 
@@ -16,7 +17,6 @@ class DataBase (object) :
             self.connStat = False
         else :
             self.connStat = True
-            self.chkTable()
 
     def __del__ (self) :
         if self.connStat == True :
@@ -39,13 +39,19 @@ class DataBase (object) :
         sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, level integer, cros integer,  enable integer, online integer, delay integer, udTime text)'
         self.cur.execute(sql)
 
-    def query (self, sql) :
+    def query (self, sql, reTry = 3) :
         if self.connStat == False : return False
 
-        self.cur.execute(sql)
-        values = self.cur.fetchall()
+        try:
+            self.cur.execute(sql)
+            values = self.cur.fetchall()
 
-        return values
+            return values
+        except:
+            if reTry > 0 :
+                time.sleep(1)
+                reTry = reTry - 1
+                return self.query(sql, reTry)
 
     def execute (self, sql) :
         try :
@@ -55,7 +61,7 @@ class DataBase (object) :
         except :
             return False
 
-    def insert (self, data):
+    def insert (self, data, reTry = 3):
         if self.connStat == False : return False
 
         keyList = []
@@ -65,10 +71,16 @@ class DataBase (object) :
             valList.append(str(v).replace('"','\"').replace("'","''"))
 
         sql = "insert into " + self.table + " (`" + '`, `'.join(keyList) + "`) values ('" + "', '".join(valList) + "')"
-        self.cur.execute(sql)
-        self.conn.commit()
+        try:
+            self.cur.execute(sql)
+            self.conn.commit()
+        except:
+            if reTry > 0 :
+                time.sleep(1)
+                reTry = reTry - 1
+                self.insert(data, reTry)
 
-    def edit (self, id, data):
+    def edit (self, id, data, reTry = 3):
         if self.connStat == False : return False
 
         param = ''
@@ -78,8 +90,15 @@ class DataBase (object) :
         param = param[1:]
 
         sql = "update " + self.table + " set %s WHERE id = %s" % (param, id)
-        self.cur.execute(sql)
-        self.conn.commit()
+        try:
+            self.cur.execute(sql)
+            self.conn.commit()
+        except:
+            if reTry > 0 :
+                time.sleep(1)
+                reTry = reTry - 1
+                self.edit(id, data, reTry)
+
 
     def disConn (self) :
         if self.connStat == False : return False
