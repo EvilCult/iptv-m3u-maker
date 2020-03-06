@@ -70,32 +70,34 @@ class Source (object) :
             midM3uUrlList = pattern.findall(midM3uInfo['body'])
             if len(midM3uUrlList) > 0 :
                 midM3uUrl = midM3uUrlList[0]
-                m3u = self.T.getRealUrl(midM3uUrl)
 
-                try :
-                    m3u.index('migu.php?token=')
-                except :
-                    if m3u != '' :
-                        netstat = self.T.chkPlayable(m3u)
-                    else :
-                        netstat = 0
+                if midM3uUrl != '' :
+                    m3u = self.T.getRealUrl(midM3uUrl)
 
-                    if netstat > 0 :
-                        cros = 1 if self.T.chkCros(m3u) else 0
-                        data = {
-                            'title'  : str(info['id']) if info['id'] != '' else str(info['title']),
-                            'url'    : str(m3u),
-                            'quality': str(info['quality']),
-                            'delay'  : netstat,
-                            'level'  : str(info['level']),
-                            'cros'   : cros,
-                            'online' : 1,
-                            'udTime' : self.now,
-                        }
-                        self.addData(data)
-                        print('Checking[ %s ]: %s' % (str(info['id']) + str(info['title']), m3u))
-                    else :
-                        pass # MAYBE later :P
+                    try :
+                        m3u.index('migu.php?token=')
+                    except :
+                        if m3u != '' :
+                            netstat = self.T.chkPlayable(m3u)
+                        else :
+                            netstat = 0
+
+                        if netstat > 0 :
+                            cros = 1 if self.T.chkCros(m3u) else 0
+                            data = {
+                                'title'  : str(info['id']) if info['id'] != '' else str(info['title']),
+                                'url'    : str(m3u),
+                                'quality': str(info['quality']),
+                                'delay'  : netstat,
+                                'level'  : str(info['level']),
+                                'cros'   : cros,
+                                'online' : 1,
+                                'udTime' : self.now,
+                            }
+                            self.addData(data)
+                            self.T.logger('正在分析[ %s ]: %s' % (str(info['id']) + str(info['title']), m3u))
+                        else :
+                            pass # MAYBE later :P
 
 
     def addData (self, data) :

@@ -15,11 +15,13 @@
 
 将其输出为 **m3u** 文件
 
+程序内置服务器功能, 本地运行访问: http://{你的IP}:9527/m3u
+
 ### 目前进度
 
-目前库存频道总数: 4523
+目前库存频道总数: 1024
 
-已放出优质频道总是: 687
+已放出优质频道总是: 269
 
 **!!! 项目持续更新中 !!!**
 
@@ -30,33 +32,44 @@
 - V2ex - [Dotpy](https://www.v2ex.com/member/Dotpy) 提供1600+可用播放源
 - http://iptv807.com/
 
-更多来源还在考虑要不要加入....
+*数据源总是挂掉的比新增的快,欢迎推荐稳定数据源*
 
 
 ## 项目使用方法
 ---
 本项目基于 **python3.7** 进行开发
 
+### 手动执行
 ```
 git clone https://github.com/EvilCult/iptv-m3u-maker.git
-cd iptv-m3u-maker
-python main.py
+
+cd iptv-m3u-maker/python
+
+python iptv.py
 ```
-人生苦短, 我用Docker 
+### 人生苦短, 我用Docker 
 
 建议以[Docker](https://www.docker.com/) 的方式,直接在路由器上运行,本地检测地址访问,更为精准.
 
-两行命令构建运行环境
 ```
-docker pull python:3.7
-docker run -it --name python3 -v {脚本所在滤镜}:{容器里随便你想要的路径} python:3.7
+git clone https://github.com/EvilCult/iptv-m3u-maker.git
+
+cd iptv-m3u-maker
+
+docker build -t iptv-maker:latest .
+
+docker run -it -d --name iptv -p 9527:9527 iptv-maker:latest
 ```
+*build的过程中会自动配置程序运行环境, 其中已包含flask服务器,可直接访问 ' http://{运行docker的机器的IP地址}:9527 ' 查看当前程序状态,以及相关操作*
+
+### 其他
+
+**待程序稍微稳定**后回只做一个镜像丢到docker hub上去, 直接拉取就好.
 
 ## 其他
 ---
 ### 相关项目
-「[iptv-m3u-player](https://github.com/EvilCult/iptv-m3u-player)」 - 基于本项目的衍生项目, 基于Electron+React编写的一个轻量级桌面客户端.频道数据会随本项目更新.
-Mac上不知道用什么客户端的,可以试试.
+~~「[iptv-m3u-player](https://github.com/EvilCult/iptv-m3u-player)」 - 基于本项目的衍生项目, 基于Electron+React编写的一个轻量级桌面客户端.频道数据会随本项目更新. Mac上不知道用什么客户端的,可以试试.~~ (当前更新涉及文件路径修改, 该项目暂时不可直接使用.)
 
 Android TV 请使用 [Kodi](https://kodi.tv/ ) + ‘PVR IPTV Simple Client’
 

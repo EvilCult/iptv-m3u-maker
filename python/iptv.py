@@ -6,6 +6,7 @@ import db
 import time
 import re
 import json
+import os
 from plugins import base
 # from plugins import lista
 from plugins import listb
@@ -18,6 +19,10 @@ class Iptv (object):
         self.DB = db.DataBase()
 
     def run(self) :
+        self.T.logger("开始抓取", True)
+
+        self.DB.chkTable()
+
         Base = base.Source()
         Base.getSource()
 
@@ -27,17 +32,14 @@ class Iptv (object):
         listB = listb.Source()
         listB.getSource()
 
-        # # listA = lista.Source()
-        # # urlList = listA.getSource()
-        # # for item in urlList :
-        # #     self.addData(item)
-
         self.outPut()
         self.outJson()
 
-        print("DONE!!")
+        self.T.logger("抓取完成")
 
     def outPut (self) :
+        self.T.logger("正在生成m3u8文件")
+
         sql = """SELECT * FROM
             (SELECT * FROM %s WHERE online = 1 ORDER BY delay DESC) AS delay
             GROUP BY LOWER(delay.title)
@@ -46,7 +48,7 @@ class Iptv (object):
             """ % (self.DB.table)
         result = self.DB.query(sql)
 
-        with open('tv.m3u8', 'w') as f:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)).replace('python', 'http'), 'tv.m3u'), 'w') as f:
             f.write("#EXTM3U\n")
             for item in result :
                 className = '其他频道'
@@ -65,6 +67,8 @@ class Iptv (object):
                 f.write("%s\n" % (item[3]))
 
     def outJson (self) :
+        self.T.logger("正在生成Json文件")
+        
         sql = """SELECT * FROM
             (SELECT * FROM %s WHERE online = 1 ORDER BY delay DESC) AS delay
             GROUP BY LOWER(delay.title)
@@ -98,7 +102,7 @@ class Iptv (object):
 
         jsonStr = json.dumps(fmtList)
 
-        with open('tv.json', 'w') as f:
+        with open( os.path.join(os.path.dirname(os.path.abspath(__file__)).replace('python', 'http'), 'tv.json'), 'w') as f:
             f.write(jsonStr)
 
 if __name__ == '__main__':

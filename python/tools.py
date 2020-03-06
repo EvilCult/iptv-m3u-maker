@@ -11,6 +11,7 @@ import random
 import socket
 import time
 import area
+import os
 
 socket.setdefaulttimeout(5.0)
 
@@ -197,3 +198,12 @@ class Tools (object) :
         #         return False
         # except:
         #     return 0
+
+    def logger (self, txt, new = False) :
+        filePath = os.path.join(os.path.dirname(os.path.abspath(__file__)).replace('python', 'http'), 'log.txt')
+        if new :
+            typ = 'w'
+        else :
+            typ = 'a'
+        with open(filePath, typ) as f: 
+            f.write(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()) + ": " + txt + "\r\n")
