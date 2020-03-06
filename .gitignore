@@ -5,6 +5,7 @@ __pycache__/
 *.sqlite3
 log.txt
 .vscode/
+.DS_Store
 
 # C extensions
 *.so
