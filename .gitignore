@@ -2,7 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+*.sqlite3
+log.txt
 .vscode/
 
 # C extensions
