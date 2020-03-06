@@ -19,6 +19,10 @@ class Main (object):
 
         @web.route('/')
         def index():
+            return send_from_directory(resourcePath, 'index.html')
+
+        @web.route('/m3u8')
+        def m3u8():
             return send_from_directory(resourcePath, 'tv.m3u8')
 
         @web.route('/json')
@@ -27,7 +31,7 @@ class Main (object):
 
         @web.route('/log')
         def log():
-            return send_from_directory(resourcePath, 'result.log')
+            return send_from_directory(resourcePath, 'log.txt')
 
         web.run(
             host = '0.0.0.0',
@@ -41,5 +45,5 @@ class Main (object):
 
 if __name__ == '__main__':
     App = Main()
-    App.run()
+    App.site()
 

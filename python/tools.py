@@ -200,7 +200,7 @@ class Tools (object) :
         #     return 0
 
     def logger (self, txt, new = False) :
-        filePath = os.path.join(os.path.dirname(os.path.abspath(__file__)).replace('python', 'http'), 'result.log')
+        filePath = os.path.join(os.path.dirname(os.path.abspath(__file__)).replace('python', 'http'), 'log.txt')
         if new :
             typ = 'w'
         else :

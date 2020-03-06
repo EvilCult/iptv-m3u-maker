@@ -4,6 +4,7 @@
 import sqlite3
 import getpass
 import os
+import time
 
 class DataBase (object) :
 
@@ -55,7 +56,7 @@ class DataBase (object) :
         except :
             return False
 
-    def insert (self, data):
+    def insert (self, data, reTry = 3):
         if self.connStat == False : return False
 
         keyList = []
@@ -65,8 +66,14 @@ class DataBase (object) :
             valList.append(str(v).replace('"','\"').replace("'","''"))
 
         sql = "insert into " + self.table + " (`" + '`, `'.join(keyList) + "`) values ('" + "', '".join(valList) + "')"
-        self.cur.execute(sql)
-        self.conn.commit()
+        try:
+            self.cur.execute(sql)
+            self.conn.commit()
+        except:
+            if reTry > 0 :
+                time.sleep(1)
+                reTry = reTry - 1
+                self.insert(data, reTry)
 
     def edit (self, id, data):
         if self.connStat == False : return False
