@@ -6,6 +6,7 @@ import db
 import time
 import re
 import json
+import os
 from plugins import base
 # from plugins import lista
 from plugins import listb
@@ -19,6 +20,8 @@ class Iptv (object):
 
     def run(self) :
         self.T.logger("开始抓取", True)
+
+        self.DB.chkTable()
 
         Base = base.Source()
         Base.getSource()

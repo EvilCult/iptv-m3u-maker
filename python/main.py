@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, send_from_directory
-import tools
+from flask import Flask, redirect, url_for, send_from_directory
+import threading
+
 import iptv
 
 class Main (object):
@@ -20,6 +21,13 @@ class Main (object):
         @web.route('/')
         def index():
             return send_from_directory(resourcePath, 'index.html')
+
+        @web.route('/run')
+        def run():
+            thread = threading.Thread(target = self.scan, args = (), daemon = True)
+            thread.start()
+
+            return redirect(url_for('log'))
 
         @web.route('/m3u8')
         def m3u8():
@@ -40,10 +48,20 @@ class Main (object):
         )
 
     def run (self):
-        t = tools.Tools()
-        t.logger('123')
+        threads = []
+
+        thread = threading.Thread(target = self.site, args = (), daemon = True)
+        thread.start()
+        threads.append(thread)
+
+        thread = threading.Thread(target = self.scan, args = (), daemon = True)
+        thread.start()
+        threads.append(thread)
+
+        for t in threads:
+            t.join()
 
 if __name__ == '__main__':
     App = Main()
-    App.site()
+    App.run()
 

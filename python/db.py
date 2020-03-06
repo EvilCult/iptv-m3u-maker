@@ -17,7 +17,6 @@ class DataBase (object) :
             self.connStat = False
         else :
             self.connStat = True
-            self.chkTable()
 
     def __del__ (self) :
         if self.connStat == True :
@@ -75,7 +74,7 @@ class DataBase (object) :
                 reTry = reTry - 1
                 self.insert(data, reTry)
 
-    def edit (self, id, data):
+    def edit (self, id, data, reTry = 3):
         if self.connStat == False : return False
 
         param = ''
@@ -85,8 +84,15 @@ class DataBase (object) :
         param = param[1:]
 
         sql = "update " + self.table + " set %s WHERE id = %s" % (param, id)
-        self.cur.execute(sql)
-        self.conn.commit()
+        try:
+            self.cur.execute(sql)
+            self.conn.commit()
+        except:
+            if reTry > 0 :
+                time.sleep(1)
+                reTry = reTry - 1
+                self.edit(id, data, reTry)
+
 
     def disConn (self) :
         if self.connStat == False : return False
