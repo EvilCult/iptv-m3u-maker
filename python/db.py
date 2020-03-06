@@ -39,13 +39,19 @@ class DataBase (object) :
         sql = 'create table ' + self.table + ' (id integer PRIMARY KEY autoincrement, title text, quality text, url text, level integer, cros integer,  enable integer, online integer, delay integer, udTime text)'
         self.cur.execute(sql)
 
-    def query (self, sql) :
+    def query (self, sql, reTry = 3) :
         if self.connStat == False : return False
 
-        self.cur.execute(sql)
-        values = self.cur.fetchall()
+        try:
+            self.cur.execute(sql)
+            values = self.cur.fetchall()
 
-        return values
+            return values
+        except:
+            if reTry > 0 :
+                time.sleep(1)
+                reTry = reTry - 1
+                return self.query(sql, reTry)
 
     def execute (self, sql) :
         try :
