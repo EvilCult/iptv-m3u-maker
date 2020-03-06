@@ -31,7 +31,7 @@ class Source (object) :
             total = len(sourceList)
             for item in sourceList :
                 info = self.T.fmtTitle(item[0])
-                print('Checking[ %s / %s ]: %s' % (i, total, str(info['id']) + str(info['title'])))
+                self.T.logger('正在分析[ %s / %s ]: %s' % (i, total, str(info['id']) + str(info['title'])))
 
                 netstat = self.T.chkPlayable(item[1])
                 i = i + 1

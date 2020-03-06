@@ -62,7 +62,7 @@ class Source (object) :
             }
             
             self.addData(data)
-            print('Checking[ %s ]: %s' % (str(info['id']) + str(info['title']), url))
+            self.T.logger('正在分析[ %s ]: %s' % (str(info['id']) + str(info['title']), url))
         else :
             pass # MAYBE later :P
 

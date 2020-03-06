@@ -8,7 +8,7 @@ import os
 class DataBase (object) :
 
     def __init__ (self) :
-        self.dbAddress = os.getcwd() + '/'
+        self.dbAddress = os.path.dirname(os.path.abspath(__file__)).replace('python', 'database')
 
         self.table = 'lists'
 

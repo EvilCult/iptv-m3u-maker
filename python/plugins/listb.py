@@ -93,7 +93,7 @@ class Source (object) :
                             'udTime' : self.now,
                         }
                         self.addData(data)
-                        print('Checking[ %s ]: %s' % (str(info['id']) + str(info['title']), m3u))
+                        self.T.logger('正在分析[ %s ]: %s' % (str(info['id']) + str(info['title']), m3u))
                     else :
                         pass # MAYBE later :P
 

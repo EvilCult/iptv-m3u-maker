@@ -1,19 +1,45 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, send_from_directory
+import tools
+import iptv
 
-app = Flask(__name__)
-resourcePath = '/srv/iptv/http'
+class Main (object):
+    def __init__ (self) :
+        pass
 
-@app.route('/')
-def index():
-    return send_from_directory(resourcePath, 'tv.json')
+    def scan (self):
+        Crawler = iptv.Iptv()
+        Crawler.run()
+
+    def site (self):
+        web = Flask(__name__)
+        resourcePath = '/srv/iptv/http'
+
+        @web.route('/')
+        def index():
+            return send_from_directory(resourcePath, 'tv.m3u8')
+
+        @web.route('/json')
+        def json():
+            return send_from_directory(resourcePath, 'tv.json')
+
+        @web.route('/log')
+        def log():
+            return send_from_directory(resourcePath, 'result.log')
+
+        web.run(
+            host = '0.0.0.0',
+            port = 9527,  
+            debug = False 
+        )
+
+    def run (self):
+        t = tools.Tools()
+        t.logger('123')
 
 if __name__ == '__main__':
-    app.run(
-        host = '0.0.0.0',
-        port = 9527,  
-        debug = True 
-    )
+    App = Main()
+    App.run()
 
