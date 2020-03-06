@@ -29,9 +29,9 @@ class Main (object):
 
             return redirect(url_for('log'))
 
-        @web.route('/m3u8')
+        @web.route('/m3u')
         def m3u8():
-            return send_from_directory(resourcePath, 'tv.m3u8')
+            return send_from_directory(resourcePath, 'tv.m3u')
 
         @web.route('/json')
         def json():

@@ -48,7 +48,7 @@ class Iptv (object):
             """ % (self.DB.table)
         result = self.DB.query(sql)
 
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)).replace('python', 'http'), 'tv.m3u8'), 'w') as f:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)).replace('python', 'http'), 'tv.m3u'), 'w') as f:
             f.write("#EXTM3U\n")
             for item in result :
                 className = '其他频道'
