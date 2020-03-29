@@ -1,1 +1,1 @@
-0 0 * * 0 root /usr/local/bin/python /srv/iptv/python/iptv.py
+0 0 * * 0 root cd /src/iptv/python && /usr/local/bin/python ./iptv.py
