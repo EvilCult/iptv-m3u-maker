@@ -6,6 +6,7 @@ import time
 import re
 import db
 import threading
+from .threads import ThreadPool
 
 class Source (object) :
 
@@ -18,19 +19,22 @@ class Source (object) :
         with open(sourcePath, 'r') as f:
             lines = f.readlines()
             total = len(lines)
-            threads = []
+            threads = ThreadPool(20)
 
             for i in range(0, total):
                 line = lines[i].strip('\n')
                 item = line.split(',', 1)
-                thread = threading.Thread(target = self.detectData, args = (item[0], item[1], ), daemon = True)
-                thread.start()
-                threads.append(thread)
+                threads.add_task(self.detectData, title = item[0], url = item[1])
+                # thread = threading.Thread(target = self.detectData, args = (item[0], item[1], ), daemon = True)
+                # thread.start()
+                # threads.append(thread)
+            threads.wait_completion()
 
-            for t in threads:
-                t.join()
+            # for t in threads:
+            #     t.join()
 
     def detectData (self, title, url) :
+        print('detectData', title, url)
         info = self.T.fmtTitle(title)
 
         netstat = self.T.chkPlayable(url)
