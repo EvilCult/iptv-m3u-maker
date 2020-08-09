@@ -3,13 +3,13 @@ from flask import request
 
 from Http.Models import UrlModel
 
-@app.route('/')
-def start():
-    return 'Welcome!!'
-
-
-@app.route('/url/list')
-def url_list():
+@app.route('/url/test')
+def url_test():
     urlModel = UrlModel()
 
     return urlModel.test()
+
+@app.route('/url/list')
+def url_list():
+
+    return '/url/list'

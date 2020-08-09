@@ -1,4 +1,7 @@
-class UrlModel():
+from Http.Libs import DB
+
+class UrlModel:
 
     def test(self):
-        return 'this is a test message'
+        db = DB()
+        return '123'
