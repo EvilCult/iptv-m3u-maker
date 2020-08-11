@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import urls from './urls'
+import sources from './sources'
 
 export default combineReducers({
-  urlsState    : urls,
+  sourcesState    : sources,
 })

@@ -1,0 +1,8 @@
+const Types = {
+  SOURCES_LIST    : 'SOURCES_LIST',
+  SOURCES_LOADING : 'SOURCES_LOADING',
+  SOURCES_CLEANERR: 'SOURCES_CLEANERR',
+  SOURCES_ERR     : 'SOURCES_ERR',
+}
+
+export default Types

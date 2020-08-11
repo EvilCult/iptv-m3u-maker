@@ -1,4 +1,4 @@
-import Types from '@/redux/constants/urls'
+import Types from '@/redux/constants/sources'
 
 const initState = {
   source : {},
@@ -10,18 +10,18 @@ const initState = {
   ts     : 0,
 }
 
-export default function urls (state = initState, action) {
+export default function sources (state = initState, action) {
   switch (action.type) {
-    case Types.URLS_LIST:
+    case Types.SOURCES_LIST:
       return list(state, action)
 
-    case Types.URLS_LOADING:
+    case Types.SOURCES_LOADING:
       return loading(state)
 
-    case Types.URLS_ERR:
+    case Types.SOURCES_ERR:
       return err(state, action)
 
-    case Types.URLS_CLEANERR:
+    case Types.SOURCES_CLEANERR:
       return cleanErr(state)
 
     default:

@@ -19,21 +19,28 @@ class Router extends Component {
         </div>
       )
     } else if (error) {
-      return (<div>404</div>)
+      console.log('500')
     } else {
-      return (<div>404</div>)
+      console.log('404')
     }
   }
 
   render () {
-    let Index = Loadable({
-      loader: () => import( 'pages/Index/Index'),
+    const Index = Loadable({
+      loader: () => import( '@/pages/Index/Index'),
+      loading: this.loadingComponent
+    })
+
+    const SourceList = Loadable({
+      loader: () => import( '@/pages/SourceList/SourceList'),
       loading: this.loadingComponent
     })
 
     return (
       <Switch>
         <Route exact path="/home" component={Index}/>
+        <Route exact path="/home/sources/list" component={SourceList}/>
+
         {/* <Route exact path="/home/err/404" component={E404}/>
         <Redirect to='/home/err/404'/> */}
       </Switch>
