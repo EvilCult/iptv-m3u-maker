@@ -69,10 +69,12 @@ CONCURRENT_REQUESTS = 10
 #}
 
 ITEM_PIPELINES = {
-    # 'bot.pipelines.BotImgPipeline': 1
+    'bot.pipelines.BotFilePipeline': 100,
+    'bot.pipelines.ChannleSqlitePipeline': 300
 }
-IMAGES_STORE = '../static'
+FILES_STORE = 'static'
 IMAGES_EXPIRES = 90
+MEDIA_ALLOW_REDIRECTS =True
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

@@ -12,9 +12,9 @@ class BotItem(scrapy.Item):
     pass
 
 class ChannelItem(scrapy.Item):
+    num         = scrapy.Field()
     title       = scrapy.Field()
     alias       = scrapy.Field()
-    group        = scrapy.Field()
-    image_urls  = scrapy.Field()
-    images      = scrapy.Field()
+    group       = scrapy.Field()
+    file_urls   = scrapy.Field()
     image_paths = scrapy.Field()
