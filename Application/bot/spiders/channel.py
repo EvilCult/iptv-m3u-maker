@@ -1,6 +1,6 @@
 import scrapy
 
-from bot.items import ChannelItem
+from Bot.items import ChannelItem
 
 class ChannelSpider(scrapy.Spider):
     name = 'channel'

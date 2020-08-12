@@ -11,7 +11,7 @@ from scrapy.exceptions import DropItem
 import scrapy
 import sqlite3
 import os
-from bot.items import ChannelItem
+from Bot.items import ChannelItem
 from scrapy.pipelines.files import FilesPipeline
 
 class BotPipeline:
