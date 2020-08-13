@@ -12,7 +12,7 @@ class ChannelSpider(scrapy.Spider):
 
         channels = sel.xpath('/html/body/div/table/tbody/tr')
         channels = channels[1:]
-        channels = channels[0:1]
+        channels = channels[0:10]
 
         for channel in channels:
             item = ChannelItem()
