@@ -5,12 +5,10 @@
 
 
 # useful for handling different item types with a single interface
+import scrapy, sqlite3, time, os
+
 from itemadapter import ItemAdapter
 from scrapy.exceptions import DropItem
-
-import scrapy
-import sqlite3
-import os
 from Bot.items import ChannelItem
 from scrapy.pipelines.files import FilesPipeline
 
@@ -50,17 +48,39 @@ class ChannleSqlitePipeline(object):
         self.conn.close()
 
     def process_item(self, item, spider):
-        self.insert_db(item)
+        self.savData(item)
         return item
 
-    def insert_db(self, item):
+    def savData(self, item):
+        now = int(time.time())
+
         values = (
             item['num'],
             item['title'],
             item['alias'],
             item['group'],
             '/static/' + item['image_paths'],
+            now
         )
+        sql = (
+            'INSERT OR IGNORE INTO tvg_info '
+            '("num", "title", "alias", "group", "icon", udtime)'
+            ' VALUES '
+            '(?, ?, ?, ?, ?, ?);'
+        )
+        self.cur.execute(sql, values)
 
-        sql = 'INSERT INTO tvg_info ("num", "title", "alias", "group", "icon") VALUES (?,?,?,?,?)'
+        values = (
+            item['num'],
+            item['title'],
+            item['group'],
+            '/static/' + item['image_paths'],
+            now,
+            item['alias']
+        )
+        sql = (
+            'UPDATE tvg_info SET'
+            ' "num" = ?, "title" = ?, "group" = ?, "icon" = ?, "udtime" = ?'
+            ' WHERE "alias" = ?;'
+        )
         self.cur.execute(sql, values)

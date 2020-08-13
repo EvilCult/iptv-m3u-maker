@@ -61,8 +61,11 @@ class DB:
             '"alias" TEXT,'
             '"group" TEXT,'
             '"icon" TEXT,'
+            '"udtime" TEXT,'
             '"isdel" integer DEFAULT 0);'
         )
+        self.cur.execute(sql)
+        sql = 'CREATE UNIQUE INDEX "alias" ON "tvg_info" ("alias");'
         self.cur.execute(sql)
 
         sql = (
