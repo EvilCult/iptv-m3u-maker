@@ -32,7 +32,7 @@ class AppHeader extends Component {
               color="inherit"
               onClick={this.goBack}
             >
-              FoxHound
+              FoxHound Platform
             </Typography>
           </div>
         </Toolbar>
