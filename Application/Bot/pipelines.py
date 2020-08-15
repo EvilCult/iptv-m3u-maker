@@ -18,7 +18,8 @@ class BotPipeline:
 
 class BotFilePipeline (FilesPipeline):
     def get_media_requests(self, item, info):
-        yield scrapy.Request(item['file_urls'])
+        if item['file_urls'] != '':
+            yield scrapy.Request(item['file_urls'])
 
     def file_path(self, request, response=None, info=None):
         path=super(BotFilePipeline, self).file_path(request,response,info)
@@ -27,10 +28,12 @@ class BotFilePipeline (FilesPipeline):
 
     def item_completed(self, results, item, info):
         image_paths = [x['path'] for ok, x in results if ok]
-        if not image_paths:
-            raise DropItem("Item contains no images")
+
         adapter = ItemAdapter(item)
-        adapter['image_paths'] = image_paths[0]
+        if not image_paths:
+            adapter['image_paths'] = ''
+        else :
+            adapter['image_paths'] = image_paths[0]
 
         return item
 
@@ -55,12 +58,16 @@ class ChannleSqlitePipeline(object):
         now = int(time.time())
 
         try:
+            if item['image_paths'] != '' :
+                imgPath = '/static/' + item['image_paths']
+            else :
+                imgPath = ''
             values = (
                 item['num'],
                 item['title'],
                 item['alias'],
                 item['group'],
-                '/static/' + item['image_paths'],
+                imgPath,
                 now
             )
             sql = (
@@ -75,7 +82,7 @@ class ChannleSqlitePipeline(object):
                 item['num'],
                 item['title'],
                 item['group'],
-                '/static/' + item['image_paths'],
+                imgPath,
                 now,
                 item['alias']
             )

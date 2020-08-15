@@ -10,7 +10,6 @@ class DB:
             self.connStat = False
         else :
             self.connStat = True
-            print('need')
             self.__chkTable()
 
     def __del__(self):
@@ -91,19 +90,19 @@ class DB:
 
         self.conn.commit()
 
-    def query (self, sql):
+    def query (self, sql, values = ()):
         if self.connStat == False : return False
 
-        self.cur.execute(sql)
+        self.cur.execute(sql, values)
         values = self.cur.fetchall()
 
         return values
 
-    def exec (self, sql):
+    def exec (self, sql, values = ()):
         if self.connStat == False : return False
 
         try:
-            self.cur.execute(sql)
+            self.cur.execute(sql, values)
             self.conn.commit()
 
             return True

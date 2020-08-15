@@ -1,11 +1,10 @@
-import subprocess
-import json
+import subprocess, json, time
 from Http import app
 from flask import request
-import time
 from concurrent.futures import ThreadPoolExecutor
 
 from Http.Models import BotModel
+from Http.Models import LogModel
 
 executor = ThreadPoolExecutor(2)
 
@@ -41,12 +40,15 @@ def botList():
 
 def realTask(spider):
     botModel = BotModel()
+    logModel = LogModel()
 
     botModel.setStat()
+    logModel.add('Spider [Channel]: Start')
 
     try:
         subprocess.check_output(['scrapy', 'crawl', spider])
     except:
-        pass
+        logModel.add(sys.exc_info()[0], 'err')
 
     botModel.setStat(False)
+    logModel.add('Spider [Channel]: Done')

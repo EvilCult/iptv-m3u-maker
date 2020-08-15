@@ -5,7 +5,7 @@ class LogModel:
     def __init__(self):
         self.db = DB()
 
-    def add(self, data):
+    def add(self, msg, typ = 'info'):
         sql = (
             'INSERT INTO "log" '
             '("typ", "msg", "udtime") '
@@ -13,8 +13,8 @@ class LogModel:
         )
 
         values = (
-            data['typ'],
-            data['msg'],
+            typ,
+            msg,
             int(time.time())
         )
         result = self.db.exec(sql, values)
