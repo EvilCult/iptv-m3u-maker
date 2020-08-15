@@ -5,7 +5,7 @@
 
 
 # useful for handling different item types with a single interface
-import scrapy, sqlite3, time, os
+import scrapy, sqlite3, time, os, sys
 
 from itemadapter import ItemAdapter
 from scrapy.exceptions import DropItem
@@ -54,33 +54,54 @@ class ChannleSqlitePipeline(object):
     def savData(self, item):
         now = int(time.time())
 
-        values = (
-            item['num'],
-            item['title'],
-            item['alias'],
-            item['group'],
-            '/static/' + item['image_paths'],
-            now
-        )
+        try:
+            values = (
+                item['num'],
+                item['title'],
+                item['alias'],
+                item['group'],
+                '/static/' + item['image_paths'],
+                now
+            )
+            sql = (
+                'INSERT OR IGNORE INTO tvg_info '
+                '("num", "title", "alias", "group", "icon", udtime)'
+                ' VALUES '
+                '(?, ?, ?, ?, ?, ?);'
+            )
+            self.cur.execute(sql, values)
+
+            values = (
+                item['num'],
+                item['title'],
+                item['group'],
+                '/static/' + item['image_paths'],
+                now,
+                item['alias']
+            )
+            sql = (
+                'UPDATE tvg_info SET'
+                ' "num" = ?, "title" = ?, "group" = ?, "icon" = ?, "udtime" = ?'
+                ' WHERE "alias" = ?;'
+            )
+            self.cur.execute(sql, values)
+
+            logStr = 'Update: [Channel] - %s' % (item['title'])
+            self.addLog('info', logStr)
+        except:
+            self.addLog('err', sys.exc_info()[0])
+
+    def addLog(self, typ, data):
         sql = (
-            'INSERT OR IGNORE INTO tvg_info '
-            '("num", "title", "alias", "group", "icon", udtime)'
-            ' VALUES '
-            '(?, ?, ?, ?, ?, ?);'
+            'INSERT INTO "log" '
+            '("typ", "msg", "udtime") '
+            'VALUES (?, ?, ?)'
         )
-        self.cur.execute(sql, values)
 
         values = (
-            item['num'],
-            item['title'],
-            item['group'],
-            '/static/' + item['image_paths'],
-            now,
-            item['alias']
+            typ,
+            data,
+            int(time.time())
         )
-        sql = (
-            'UPDATE tvg_info SET'
-            ' "num" = ?, "title" = ?, "group" = ?, "icon" = ?, "udtime" = ?'
-            ' WHERE "alias" = ?;'
-        )
+
         self.cur.execute(sql, values)

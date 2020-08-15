@@ -9,6 +9,7 @@ class BotModel:
         result = self.db.query(sql)[0]
 
         return result[2]
+
     def setStat(self, running=True):
         if running:
             sql = 'UPDATE setting SET bot = 1 where id = 1'

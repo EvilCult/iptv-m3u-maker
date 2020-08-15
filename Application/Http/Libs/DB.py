@@ -79,6 +79,16 @@ class DB:
         sql = 'INSERT INTO "setting" ("version", "bot" ) VALUES ("2.0.0", 0)'
         self.cur.execute(sql)
 
+        sql = (
+            'CREATE TABLE "log" ('
+            '"id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,'
+            '"typ" text,'
+            '"msg" text,'
+            '"udtime" text'
+            ');'
+        )
+        self.cur.execute(sql)
+
         self.conn.commit()
 
     def query (self, sql):
