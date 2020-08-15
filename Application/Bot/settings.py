@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'bot'
+BOT_NAME = 'Bot'
 
-SPIDER_MODULES = ['bot.spiders']
-NEWSPIDER_MODULE = 'bot.spiders'
+SPIDER_MODULES = ['Bot.spiders']
+NEWSPIDER_MODULE = 'Bot.spiders'
 
 LOG_LEVEL = 'WARNING'
 FEED_EXPORT_ENCODING = 'utf-8'
@@ -22,7 +22,7 @@ FEED_EXPORT_ENCODING = 'utf-8'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 10
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -47,13 +47,13 @@ CONCURRENT_REQUESTS = 10
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'bot.middlewares.BotSpiderMiddleware': 543,
+#    'Bot.middlewares.BotSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'bot.middlewares.BotDownloaderMiddleware': 543,
+#    'Bot.middlewares.BotDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,12 +65,12 @@ CONCURRENT_REQUESTS = 10
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'bot.pipelines.BotPipeline': 300,
+#    'Bot.pipelines.BotPipeline': 300,
 #}
 
 ITEM_PIPELINES = {
-    'bot.pipelines.BotFilePipeline': 100,
-    'bot.pipelines.ChannleSqlitePipeline': 300
+    'Bot.pipelines.BotFilePipeline': 100,
+    'Bot.pipelines.ChannleSqlitePipeline': 300
 }
 FILES_STORE = 'static'
 IMAGES_EXPIRES = 90

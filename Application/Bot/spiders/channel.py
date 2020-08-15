@@ -1,6 +1,6 @@
-import scrapy
+import scrapy, time, sqlite3, os
 
-from bot.items import ChannelItem
+from Bot.items import ChannelItem
 
 class ChannelSpider(scrapy.Spider):
     name = 'channel'
@@ -12,7 +12,6 @@ class ChannelSpider(scrapy.Spider):
 
         channels = sel.xpath('/html/body/div/table/tbody/tr')
         channels = channels[1:]
-        channels = channels[0:1]
 
         for channel in channels:
             item = ChannelItem()
