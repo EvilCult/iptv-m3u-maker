@@ -9,12 +9,10 @@ def channel_List():
     channelModel = ChannelModel()
 
     param = {
-        'num': '1',
-        'title': 'abc',
-        'group': '央视',
+        "isdel": 0
     }
 
-    result = channelModel.updateById(1, param)
+    result = channelModel.getListByParam(param, 'count')
     print(result)
 
     return 'test'

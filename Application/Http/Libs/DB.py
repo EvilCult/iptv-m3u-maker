@@ -161,15 +161,19 @@ class DB:
             orderStr = 'ORDER BY %s' % (typ['order'])
 
         showStr = ''
-        if 'limit' in typ:
-            showStr = ' LIMIT %s' % (typ['limit'])
-        elif 'p' in typ and 'ps' in typ:
-            showStr = ' LIMIT %s, %s' % ((int(typ['p']) -1) * int(typ['ps']), int(typ['ps']))
-        else:
-            pass
+        if typ != 'count':
+            if 'limit' in typ:
+                showStr = ' LIMIT %s' % (typ['limit'])
+            elif 'p' in typ and 'ps' in typ:
+                showStr = ' LIMIT %s, %s' % ((int(typ['p']) -1) * int(typ['ps']), int(typ['ps']))
+            else:
+                pass
 
-        sql = "SELECT * FROM %s %s %s %s" % (self.tbName, whereStr, orderStr, showStr)
-        result = self.__fmtRst(self.tbName, self.query(sql))    
+            sql = "SELECT * FROM %s %s %s %s" % (self.tbName, whereStr, orderStr, showStr)
+            result = self.__fmtRst(self.tbName, self.query(sql))    
+        else :
+            sql = "SELECT count(*) AS total FROM %s %s" % (self.tbName, whereStr)
+            result = self.query(sql)[0][0]
 
         return result
 
