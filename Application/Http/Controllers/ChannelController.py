@@ -1,18 +1,24 @@
-import subprocess, json, time
+import json
 from Http import app
 from flask import request
 
 from Http.Models import ChannelModel
 
-@app.route('/channel/list')
-def channel_List():
+@app.route('/channel/list/', methods=['GET'])
+@app.route('/channel/list/<page>', methods=['GET'])
+def channel_List(page = 1):
     channelModel = ChannelModel()
 
     param = {
         "isdel": 0
     }
 
-    result = channelModel.getListByParam(param, 'count')
-    print(result)
+    typ = {
+        'p': page,
+        'ps': 20,
+        'order': 'id ASC',
+    }
 
-    return 'test'
+    result = channelModel.getListByParam(param, typ)
+
+    return json.dumps(result, ensure_ascii=False)
