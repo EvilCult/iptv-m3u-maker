@@ -9,6 +9,13 @@ from Http.Models import ChannelModel
 def channel_List(page = 1):
     channelModel = ChannelModel()
 
+    tmp = {
+        'err': 0,
+        'data': [],
+        'count': 0,
+        'msg':'',
+    }
+
     param = {
         "isdel": 0
     }
@@ -19,6 +26,9 @@ def channel_List(page = 1):
         'order': 'id ASC',
     }
 
-    result = channelModel.getListByParam(param, typ)
+    tmp['data'] = channelModel.getListByParam(param, typ)
+    tmp['count'] = channelModel.getListByParam(param, 'count')
 
-    return json.dumps(result, ensure_ascii=False)
+    res = json.dumps(tmp, ensure_ascii=False)
+
+    return res

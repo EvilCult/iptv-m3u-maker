@@ -13,9 +13,9 @@ import {
   AddBox as AddBoxIcon,
   Cached as CachedIcon,
 } from '@material-ui/icons'
-import './LogoSider.less'
+import './ChannelSider.less'
 
-class LogoSider extends Component {
+class ChannelSider extends Component {
   constructor(props) {
     super(props)
 
@@ -48,4 +48,4 @@ class LogoSider extends Component {
   }
 }
 
-export default LogoSider
+export default ChannelSider

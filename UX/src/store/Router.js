@@ -36,8 +36,8 @@ class Router extends Component {
       loading: this.loadingComponent
     })
 
-    const LogoList = Loadable({
-      loader: () => import( '@/pages/LogoList/LogoList'),
+    const ChannelList = Loadable({
+      loader: () => import( '@/pages/ChannelList/ChannelList'),
       loading: this.loadingComponent
     })
 
@@ -45,7 +45,7 @@ class Router extends Component {
       <Switch>
         <Route exact path="/home" component={Index}/>
         <Route exact path="/home/sources/list" component={SourceList}/>
-        <Route exact path="/home/logo/list" component={LogoList}/>
+        <Route exact path="/home/channel/list" component={ChannelList}/>
 
         {/* <Route exact path="/home/err/404" component={E404}/>
         <Redirect to='/home/err/404'/> */}

@@ -1,0 +1,8 @@
+const Types = {
+  CHANNEL_LIST    : 'CHANNEL_LIST',
+  CHANNEL_LOADING : 'CHANNEL_LOADING',
+  CHANNEL_CLEANERR: 'CHANNEL_CLEANERR',
+  CHANNEL_ERR     : 'CHANNEL_ERR',
+}
+
+export default Types
