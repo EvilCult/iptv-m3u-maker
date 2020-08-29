@@ -12,9 +12,10 @@ import {
   Drawer,
   Toolbar,
   Paper,
+  Avatar,
   CircularProgress,
 } from '@material-ui/core'
-import { } from '@material-ui/icons'
+import { InsertPhoto as LogoIcon } from '@material-ui/icons'
 
 import Sider from '@/components/ChannelSider/ChannelSider'
 import * as ChannelAct from '@/redux/actions/channel'
@@ -85,10 +86,10 @@ class ChannelList extends Component {
             <TableHead>
               <TableRow>
                 <TableCell align="right">No.</TableCell>
+                <TableCell>Icon</TableCell>
                 <TableCell>Title</TableCell>
                 <TableCell>Alias</TableCell>
                 <TableCell>Group</TableCell>
-                <TableCell>Icon</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -97,10 +98,10 @@ class ChannelList extends Component {
                   <TableCell component="th" scope="row" align="right">
                     {row.num}
                   </TableCell>
+                  <TableCell><Avatar src={row.icon}><LogoIcon /></Avatar></TableCell>
                   <TableCell>{row.title}</TableCell>
                   <TableCell>{row.alias}</TableCell>
                   <TableCell>{row.group}</TableCell>
-                  <TableCell>{row.icon}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

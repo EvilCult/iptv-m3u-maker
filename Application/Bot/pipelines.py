@@ -23,7 +23,7 @@ class BotFilePipeline (FilesPipeline):
 
     def file_path(self, request, response=None, info=None):
         path=super(BotFilePipeline, self).file_path(request,response,info)
-        newPath = path.replace("full/","")
+        newPath = path.replace("full/","images/")
         return newPath
 
     def item_completed(self, results, item, info):
