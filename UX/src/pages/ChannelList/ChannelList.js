@@ -29,6 +29,7 @@ class ChannelList extends Component {
     this.state = {
       cur: 1,
       data: [],
+      count: 0,
       loading: false,
     }
   }
@@ -47,6 +48,7 @@ class ChannelList extends Component {
       return {
         ...prevState,
         data: state.list[prevState.cur],
+        count: state.count,
         loading: false,
       }
     }
@@ -98,7 +100,11 @@ class ChannelList extends Component {
                   <TableCell component="th" scope="row" align="right">
                     {row.num}
                   </TableCell>
-                  <TableCell><Avatar src={row.icon}><LogoIcon /></Avatar></TableCell>
+                  <TableCell>
+                    <Avatar src={row.icon} className='logo'>
+                      <LogoIcon />
+                    </Avatar>
+                  </TableCell>
                   <TableCell>{row.title}</TableCell>
                   <TableCell>{row.alias}</TableCell>
                   <TableCell>{row.group}</TableCell>
@@ -110,22 +116,25 @@ class ChannelList extends Component {
         <TablePagination
           rowsPerPageOptions={[]}
           component="div"
-          count={100}
+          count={this.state.count}
           rowsPerPage={20}
-          page={0}
-          // onChangePage={handleChangePage}
-          // onChangeRowsPerPage={handleChangeRowsPerPage}
+          page={parseInt(this.state.cur) - 1}
+          onChangePage={this.handleChangePage}
         />
       </Paper>
     )
   }
 
   componentDidMount() {
-    this.fetchData()
+    this.props.list(1)
   }
 
-  fetchData = (p = 1) => {
-    this.props.list(p)
+  handleChangePage = (e, page) => {
+    const newPage = parseInt(page) + 1
+    this.setState({
+      cur: newPage
+    })
+    this.props.list(newPage)
   }
 }
 
