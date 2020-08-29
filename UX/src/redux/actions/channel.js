@@ -1,11 +1,10 @@
 import Types from '@/redux/constants/channel'
-import SysConfig from '@/store/Config'
 
 export const list = (p = 1) => {
   return dispatch => {
     dispatch(loading())
 
-    fetch(SysConfig.API_URL + "/channel/list/" + p, {
+    fetch("/channel/list/" + p, {
       method : 'get',
       mode   : 'cors',
     })
