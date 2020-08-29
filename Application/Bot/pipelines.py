@@ -34,7 +34,6 @@ class BotFilePipeline (FilesPipeline):
             adapter['image_paths'] = ''
         else :
             adapter['image_paths'] = image_paths[0]
-
         return item
 
 class ChannleSqlitePipeline(object):
@@ -59,7 +58,7 @@ class ChannleSqlitePipeline(object):
 
         try:
             if item['image_paths'] != '' :
-                imgPath = '/static/' + item['image_paths']
+                imgPath = '/' + item['image_paths']
             else :
                 imgPath = ''
             values = (
