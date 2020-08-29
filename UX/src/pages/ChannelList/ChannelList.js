@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TablePagination,
   Drawer,
   Toolbar,
   Paper,
@@ -71,7 +72,6 @@ class ChannelList extends Component {
             )
             : this.renderTable()
           }
-
         </div>
       </div>
     )
@@ -79,32 +79,43 @@ class ChannelList extends Component {
 
   renderTable() {
     return (
-      <TableContainer component={Paper}>
-        <Table aria-label="Channel List">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">No.</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Alias</TableCell>
-              <TableCell>Group</TableCell>
-              <TableCell>Icon</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.data.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell component="th" scope="row" align="right">
-                  {row.num}
-                </TableCell>
-                <TableCell>{row.title}</TableCell>
-                <TableCell>{row.alias}</TableCell>
-                <TableCell>{row.group}</TableCell>
-                <TableCell>{row.icon}</TableCell>
+      <Paper className='table'>
+        <TableContainer>
+          <Table aria-label="Channel List">
+            <TableHead>
+              <TableRow>
+                <TableCell align="right">No.</TableCell>
+                <TableCell>Title</TableCell>
+                <TableCell>Alias</TableCell>
+                <TableCell>Group</TableCell>
+                <TableCell>Icon</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {this.state.data.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell component="th" scope="row" align="right">
+                    {row.num}
+                  </TableCell>
+                  <TableCell>{row.title}</TableCell>
+                  <TableCell>{row.alias}</TableCell>
+                  <TableCell>{row.group}</TableCell>
+                  <TableCell>{row.icon}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[]}
+          component="div"
+          count={100}
+          rowsPerPage={20}
+          page={0}
+          // onChangePage={handleChangePage}
+          // onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
     )
   }
 
