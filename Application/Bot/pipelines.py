@@ -23,7 +23,7 @@ class BotFilePipeline (FilesPipeline):
 
     def file_path(self, request, response=None, info=None):
         path=super(BotFilePipeline, self).file_path(request,response,info)
-        newPath = path.replace("full/","")
+        newPath = path.replace("full/","images/")
         return newPath
 
     def item_completed(self, results, item, info):
@@ -34,7 +34,6 @@ class BotFilePipeline (FilesPipeline):
             adapter['image_paths'] = ''
         else :
             adapter['image_paths'] = image_paths[0]
-
         return item
 
 class ChannleSqlitePipeline(object):
@@ -59,7 +58,7 @@ class ChannleSqlitePipeline(object):
 
         try:
             if item['image_paths'] != '' :
-                imgPath = '/static/' + item['image_paths']
+                imgPath = '/' + item['image_paths']
             else :
                 imgPath = ''
             values = (

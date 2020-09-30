@@ -6,6 +6,8 @@ class DB:
         rootPath = os.path.abspath('.')
         dbFile = os.path.join(rootPath, 'config', 'data.set')
 
+        self.tbName = ''
+
         if self.__connect(dbFile) == False:
             self.connStat = False
         else :
@@ -90,6 +92,42 @@ class DB:
 
         self.conn.commit()
 
+    def __getCol (self, tbName):
+        sql = "PRAGMA table_info([%s])" % (tbName)
+        tmp = self.query(sql)
+
+        cols = []
+        for item in tmp:
+            cols.append(item[1])
+
+        return cols
+
+    def __fmtRst (self, tbName, data):
+        cols = self.__getCol(self.tbName)
+        result = []
+
+        for item in data:
+            tmp = {}
+            i = 0
+            for x in item:
+                tmp[cols[i]] = x
+                i += 1
+            result.append(tmp)
+
+        return result
+
+    def __mkWhere (self, param):
+        sql = ''
+        for k, v in param.items():
+            if k != 'where':
+                sql += " AND `%s` = '%s'" % (k, v)
+            else:
+                sql += " AND %s" % (v)
+
+        sql = 'WHERE ' + sql[5:]
+
+        return sql
+
     def query (self, sql, values = ()):
         if self.connStat == False : return False
 
@@ -108,3 +146,58 @@ class DB:
             return True
         except:
             return False
+
+    def getById (self, id):
+        sql = 'SELECT * FROM %s WHERE id = %s' % (self.tbName, id)
+        result = self.__fmtRst(self.tbName, self.query(sql))
+
+        return result
+
+    def getListByParam (self, param, typ):
+        whereStr = self.__mkWhere(param)
+
+        orderStr = ''
+        if 'order' in typ:
+            orderStr = 'ORDER BY %s' % (typ['order'])
+
+        showStr = ''
+        if typ != 'count':
+            if 'limit' in typ:
+                showStr = ' LIMIT %s' % (typ['limit'])
+            elif 'p' in typ and 'ps' in typ:
+                showStr = ' LIMIT %s, %s' % ((int(typ['p']) -1) * int(typ['ps']), int(typ['ps']))
+            else:
+                pass
+
+            sql = "SELECT * FROM %s %s %s %s" % (self.tbName, whereStr, orderStr, showStr)
+            result = self.__fmtRst(self.tbName, self.query(sql))    
+        else :
+            sql = "SELECT count(*) AS total FROM %s %s" % (self.tbName, whereStr)
+            result = self.query(sql)[0][0]
+
+        return result
+
+    def addData (self, data):
+        col = ''
+        val = ''
+        for k, v in data.items():
+            col += ', "%s"' % (k)
+            val += ', "%s"' % (v)
+
+        sql = 'INSERT INTO %s (%s) VALUES (%s)' % (self.tbName, col[2:], val[2:])
+
+        return self.exec(sql)
+
+    def updateById (self, id, data):
+        udStr = ''
+        for k, v in data.items():
+            udStr += ', `%s` = "%s"' % (k, v)
+
+        sql = 'UPDATE %s SET %s WHERE id = %s' % (self.tbName, udStr[2:], id)
+
+        return self.exec(sql)
+
+    def delById (self, id):
+        data = {'isdel': 1}
+
+        return self.updateById (self, id, data)

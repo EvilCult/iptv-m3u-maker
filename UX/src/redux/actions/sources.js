@@ -1,7 +1,4 @@
 import Types from '@/redux/constants/sources'
-import SysConfig from '@/store/Config'
-
-const cacheExpires = 60 * 60 * 2
 
 export const list = (p = 1, ps = 10, rec = 0) => {
   return dispatch => {

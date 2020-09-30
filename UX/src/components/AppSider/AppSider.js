@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import {
   List as ListIcon,
-  PermMedia as LogoIcon,
   Settings as SettingIcon,
   AssignmentReturned as AssignmentReturnedIcon,
   Announcement as AnnouncementIcon,
@@ -37,17 +36,10 @@ class AppSider extends Component {
           </ListItem>
           <ListItem
             button
-            onClick={() => this.goTo('/home/sources/list')}
+            onClick={() => this.goTo('/home/channel/list')}
           >
             <ListItemIcon><ListIcon /></ListItemIcon>
             <ListItemText primary='Channels' />
-          </ListItem>
-          <ListItem
-            button
-            onClick={() => this.goTo('/home/logo/list')}
-          >
-            <ListItemIcon><LogoIcon /></ListItemIcon>
-            <ListItemText primary='Logos' />
           </ListItem>
         </List>
         <Divider />

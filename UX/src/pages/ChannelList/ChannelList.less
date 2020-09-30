@@ -1,0 +1,29 @@
+@menuWidth: 240px;
+
+.ChannelList {
+    display: flex;
+    margin: 72px 0;
+    .menu {
+        width: @menuWidth !important;
+        flex-shrink: 0 !important;
+        .MuiDrawer-paper {
+            width: @menuWidth !important;
+        }
+    }
+    .content {
+        flex-grow: 1 !important;
+        .loading {
+            margin-top: 200px;
+            display: flex;
+            justify-content: center;
+        }
+        .logo {
+            background-color: #808080;
+        }
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+        }
+    }
+}
