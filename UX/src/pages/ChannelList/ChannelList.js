@@ -13,9 +13,10 @@ import {
   Toolbar,
   Paper,
   Avatar,
+  Fab,
   CircularProgress,
 } from '@material-ui/core'
-import { InsertPhoto as LogoIcon } from '@material-ui/icons'
+import { InsertPhoto as LogoIcon, Add as AddIcon } from '@material-ui/icons'
 
 import Sider from '@/components/ChannelSider/ChannelSider'
 import * as ChannelAct from '@/redux/actions/channel'
@@ -75,6 +76,9 @@ class ChannelList extends Component {
             )
             : this.renderTable()
           }
+          <Fab color='secondary' aria-label='add' className='fab'>
+            <AddIcon />
+          </Fab>
         </div>
       </div>
     )
