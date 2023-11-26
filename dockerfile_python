@@ -1,0 +1,16 @@
+FROM python:3.7
+ADD ./Script/python_cron /etc/cron.d/task-cron
+WORKDIR /srv/Serv/
+RUN pip install PyMySQL flask uwsgi pyjwt\
+    && apt-get update \
+    && apt-get install -y --no-install-recommends cron \
+    && apt autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && chmod 0644 /etc/cron.d/task-cron \
+    && touch /home/boot.sh \
+    && echo "#!/bin/sh\n" > /home/boot.sh \
+    && echo "service cron start\n" >> /home/boot.sh \
+    && echo "uwsgi --catch-exceptions --ini app.ini\n" >> /home/boot.sh \
+    && echo "\n" >> /home/boot.sh \
+    && echo "/bin/bash" >> /home/boot.sh
