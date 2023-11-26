@@ -1,3 +1,0 @@
-flask
-scrapy
-Pillow
