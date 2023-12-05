@@ -1,7 +1,7 @@
 FROM python:3.7
 ADD ./Script/python_cron /etc/cron.d/task-cron
 WORKDIR /srv/Serv/
-RUN pip install PyMySQL flask uwsgi pyjwt\
+RUN pip install flask uwsgi pyjwt\
     && apt-get update \
     && apt-get install -y --no-install-recommends cron \
     && apt autoremove -y \
