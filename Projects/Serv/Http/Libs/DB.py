@@ -20,7 +20,7 @@ class DB:
         with cls.db:
             cursor = cls.db.cursor()
             if params is not None:
-                if isinstance(params, tuple):
+                if isinstance(params, (tuple, list)):
                     cursor.execute(query, params)
                 else:
                     cursor.execute(query, (params,))
@@ -44,7 +44,7 @@ class DB:
             values.append(value)
         query = f'SELECT * FROM {cls.table_name} WHERE {" AND ".join(conditions)}'
         result = cls.execute(query, values)
-        return [cls(**row) for row in result]
+        return cls.fmtResult(result)
 
     def save(self):
         if 'id' in self.data:
@@ -64,14 +64,14 @@ class DB:
 
     #获得表列名
     @classmethod
-    def getColumns(self):
-        query = f'PRAGMA table_info({self.table_name})'
-        return self.execute(query)
+    def getColumns(cls):
+        query = f'PRAGMA table_info({cls.table_name})'
+        return cls.execute(query)
 
     #格式化结果
     @classmethod
-    def fmtResult(self, data):
-        colName = self.getColumns()
+    def fmtResult(cls, data):
+        colName = cls.getColumns()
         result = []
         for row in data:
             tmp = {}
