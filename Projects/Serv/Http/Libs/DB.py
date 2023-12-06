@@ -62,13 +62,11 @@ class DB:
         self.execute(query, (self.data['id'],))
         self.data = {}
 
-    #获得表列名
     @classmethod
     def getColumns(cls):
         query = f'PRAGMA table_info({cls.table_name})'
         return cls.execute(query)
 
-    #格式化结果
     @classmethod
     def fmtResult(cls, data):
         colName = cls.getColumns()

@@ -14,3 +14,7 @@ class AdminModel(DB):
 
         admin = self.where(uname=uname, pwd=pwd)
         return admin[0] if len(admin) > 0 else None
+
+    def update(self, **kwargs):
+        self.data = kwargs
+        self.save()
