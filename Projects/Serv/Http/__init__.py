@@ -1,8 +1,12 @@
 # pyright: reportMissingModuleSource=false
 from flask import Flask
 
+from Http.Libs import Launch
+
 app = Flask('__name__', static_url_path='')
 app.debug = True
+
+Launch().chkDB()
 
 def after_request(res):
     res.headers['Access-Control-Allow-Origin'] = '*'
