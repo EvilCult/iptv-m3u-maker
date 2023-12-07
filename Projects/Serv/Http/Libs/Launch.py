@@ -5,7 +5,7 @@ class Launch(DB):
 
     @classmethod
     def chkDB(cls):
-        db_name = 'Data/config1.sqlite3'
+        db_name = 'Data/config.sqlite3'
         if not Path(db_name).exists():
             cls.initDB(db_name)
             print('no')
