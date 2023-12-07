@@ -14,8 +14,6 @@ def api_login():
     pwd = data['pwd']
     admin = AdminModel().login(uname, pwd)
 
-    print(admin)
-
     apiMsg = {
         'code': 0,
         'msg' : '',
@@ -36,7 +34,7 @@ def api_login():
                 'uname': admin['uname'],
             },
         }
-        token = jwt.encode(data, 'secret', algorithm='HS256')
+        token = jwt.encode(data, 'Attack.on.Titan', algorithm='HS256')
 
         admin['lastlogin'] = admin['logintime']
         admin['logintime'] = int(time.time())
