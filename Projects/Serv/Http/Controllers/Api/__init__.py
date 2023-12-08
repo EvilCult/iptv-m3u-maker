@@ -1,6 +1,10 @@
 # pyright: reportMissingModuleSource=false
 from Http import app
-from flask import request
+from Http.Libs.Middlewares import auth_middleware
+
+@app.before_request
+def before_request():
+    return auth_middleware()
 
 from Http.Controllers.Api.TestController import test_blueprint
 app.register_blueprint(test_blueprint)
