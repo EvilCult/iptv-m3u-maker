@@ -115,6 +115,15 @@ def api_channel_list():
 def api_channel_update():
     req = request.get_json()
 
+    if 'id' not in req:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
     channel = {
         'id': req['id'],
     }
@@ -131,10 +140,39 @@ def api_channel_update():
     if 'ping' in req:
         channel['ping'] = req['ping']
 
-    if 'isdel' in req:
-        channel['isdel'] = req['isdel']
-
     ChannelModel().update(**channel)
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': {},
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)
+
+@channel_blueprint.route('/delete', methods=['DELETE'])
+def api_channel_delete():
+    req = request.get_json()
+
+    if 'id' not in req:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
+    #soft delete
+    channel = {
+        'id': req['id'],
+        'isdel': '1'
+    }
+    ChannelModel().update(**channel)
+
+    #real delete
+    #ChannelModel().delete(req['id'])
 
     apiMsg = {
         'code': 0,
