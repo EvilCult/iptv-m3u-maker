@@ -30,8 +30,11 @@ class DB:
         return result
 
     @classmethod
-    def find(cls, val, key='id'):
-        query = f'SELECT * FROM {cls.table_name} WHERE {key} = ?'
+    def find(cls, val, key='id', force=False):
+        if not force:
+            query = f'SELECT * FROM {cls.table_name} WHERE {key} = ? AND isdel = 0'
+        else:
+            query = f'SELECT * FROM {cls.table_name} WHERE {key} = ?'
         data = cls.execute(query, (val,))
         return cls.fmtResult(data)
 
@@ -94,12 +97,19 @@ class DB:
         return cls.execute(query)[0][0]
 
     @classmethod
-    def select(cls, page=1, limit=20):
-        query = f'SELECT * FROM {cls.table_name} LIMIT ? OFFSET ?'
-        print(query)
+    def select(cls, page=1, limit=20, type='normal'):
+        if type == 'normal':
+            query = f'SELECT * FROM {cls.table_name} where isdel = 0 LIMIT ? OFFSET ?'
+        elif type == 'del':
+            query = f'SELECT * FROM {cls.table_name} where isdel = 1 LIMIT ? OFFSET ?'
+        else:
+            query = f'SELECT * FROM {cls.table_name} LIMIT ? OFFSET ?'
         return cls.execute(query, (limit, (int(page) - 1) * int(limit)))
 
     @classmethod
-    def selectAll(cls):
-        query = f'SELECT * FROM {cls.table_name}'
+    def selectAll(cls, force=False):
+        if not force:
+            query = f'SELECT * FROM {cls.table_name} where isdel = 0'
+        else:
+            query = f'SELECT * FROM {cls.table_name}'
         return cls.execute(query)
