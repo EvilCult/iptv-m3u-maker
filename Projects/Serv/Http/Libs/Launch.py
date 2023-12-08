@@ -16,7 +16,6 @@ class Launch(DB):
     def initDB(cls, db_name):
         cls.connect(db_name)
         queries = [
-            'DROP TABLE IF EXISTS "admin";',
             '''
             CREATE TABLE "admin" (
                 "id" integer,
@@ -37,6 +36,9 @@ class Launch(DB):
                 '39faf0e6a00286cc6c67adae18cfc7de70a19fa70c2851f411b6e6ec0476ffdb',
                 '0'
             );
+            ''',
+            '''
+            CREATE TABLE "channel" ("id" integer,"title" varchar,"url" varchar,"alive" int DEFAULT '1',"ping" int DEFAULT '0',"addtime" varchar,"isdel" int DEFAULT '0', PRIMARY KEY (id));
             '''
         ]
         for query in queries:

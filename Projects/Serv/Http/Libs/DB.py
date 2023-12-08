@@ -55,7 +55,7 @@ class DB:
             params = list(self.data.values())
         self.execute(query, params)
         if 'id' not in self.data:
-            self.data['id'] = self.db.lastrowid
+            self.data['id'] = self.execute('SELECT last_insert_rowid()')[0][0]
 
     def delete(self):
         query = f'DELETE FROM {self.table_name} WHERE id = ?'
