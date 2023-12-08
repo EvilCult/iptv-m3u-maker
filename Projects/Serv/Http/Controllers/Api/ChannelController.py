@@ -111,6 +111,27 @@ def api_channel_list():
 
     return json.dumps(apiMsg)
 
+@channel_blueprint.route('/info/<int:id>', methods=['GET'])
+def api_channel_info(id):
+    channel = ChannelModel().findById(id)
+
+    if len(channel) > 0:
+        apiMsg = {
+            'code': 0,
+            'msg' : '',
+            'data': channel[0],
+            'time': int(time.time())
+        }
+    else :
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+
+    return json.dumps(apiMsg)
+
 @channel_blueprint.route('/update', methods=['POST'])
 def api_channel_update():
     req = request.get_json()
@@ -178,19 +199,6 @@ def api_channel_delete():
         'code': 0,
         'msg' : '',
         'data': {},
-        'time': int(time.time())
-    }
-
-    return json.dumps(apiMsg)
-
-@channel_blueprint.route('/info/<int:id>', methods=['GET'])
-def api_channel_info(id):
-    channel = ChannelModel().findById(id)
-
-    apiMsg = {
-        'code': 0,
-        'msg' : '',
-        'data': channel,
         'time': int(time.time())
     }
 
