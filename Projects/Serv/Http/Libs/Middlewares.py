@@ -1,23 +1,25 @@
 from flask import request
 import time, jwt, json
 
-def auth_middleware(func):
-    def wrapper(*args, **kwargs):
-        token = request.headers.get('Authorization')
-        try :
-            payload = jwt.decode(token, 'Attack.on.Titan', issuer='EvilCult', algorithms=['HS256'])
-            #more check
-        except:
-            apiMsg = {
-                'code': 1,
-                'msg' : 'Access Denied',
-                'data': {},
-                'time': int(time.time())
-            }
+def auth_middleware():
+    if request.path.startswith('/api/v1/login'):
+        return None
 
-            return json.dumps(apiMsg), 401
+    token = request.headers.get('Authorization')
+    try :
+        payload = jwt.decode(token, 'Attack.on.Titan', issuer='EvilCult', algorithms=['HS256'])
+        #more check
+    except:
+        print('auth_middleware: token error')
+        apiMsg = {
+            'code': 1,
+            'msg' : 'Access Denied',
+            'data': {},
+            'time': int(time.time())
+        }
 
-        result = func(*args, **kwargs)
-        return result
+        return json.dumps(apiMsg), 401
 
-    return wrapper
+    return None
+
+

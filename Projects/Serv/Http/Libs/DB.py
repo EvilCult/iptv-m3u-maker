@@ -55,7 +55,7 @@ class DB:
             params = list(self.data.values())
         self.execute(query, params)
         if 'id' not in self.data:
-            self.data['id'] = self.db.lastrowid
+            self.data['id'] = self.execute('SELECT last_insert_rowid()')[0][0]
 
     def delete(self):
         query = f'DELETE FROM {self.table_name} WHERE id = ?'
@@ -81,4 +81,25 @@ class DB:
     @classmethod
     def __init_subclass__(cls, **config):
         super().__init_subclass__(**config)
-        cls.connect(config.get('db_name', 'Data/config.sqlite3'))
+        cls.connect(config.get('db_name', 'Data/config.db'))
+
+    @classmethod
+    def __del_subclass__(cls):
+        cls.close()
+        super().__del_subclass__()
+
+    @classmethod
+    def counts(cls):
+        query = f'SELECT COUNT(*) FROM {cls.table_name}'
+        return cls.execute(query)[0][0]
+
+    @classmethod
+    def select(cls, page=1, limit=20):
+        query = f'SELECT * FROM {cls.table_name} LIMIT ? OFFSET ?'
+        print(query)
+        return cls.execute(query, (limit, (int(page) - 1) * int(limit)))
+
+    @classmethod
+    def selectAll(cls):
+        query = f'SELECT * FROM {cls.table_name}'
+        return cls.execute(query)
