@@ -5,7 +5,7 @@ import json, time, requests
 
 channel_blueprint = Blueprint("channel_blueprint", __name__, url_prefix="/api/v1/channel")
 
-@channel_blueprint.route('/add', methods=['POST'])
+@channel_blueprint.route('/add', methods=['PUT'])
 def api_channel_add():
     req = request.get_json()
 
@@ -26,7 +26,7 @@ def api_channel_add():
 
     return json.dumps(apiMsg)
 
-@channel_blueprint.route('/add/txt', methods=['POST'])
+@channel_blueprint.route('/add/txt', methods=['PUT'])
 def api_channel_addtxt():
     req = request.get_json()
 
@@ -41,7 +41,7 @@ def api_channel_addtxt():
 
     return json.dumps(apiMsg)
 
-@channel_blueprint.route('/add/url', methods=['POST'])
+@channel_blueprint.route('/add/url', methods=['PUT'])
 def api_channel_addurl():
     req = request.get_json()
 
@@ -67,7 +67,6 @@ def api_channel_addurl():
 
     return json.dumps(apiMsg)
 
-
 def addChannelData(data):
     channel_list = []
     channel_name = ''
@@ -84,3 +83,30 @@ def addChannelData(data):
         channel_ids.append(ChannelModel().add(**channel))
 
     return channel_ids
+
+@channel_blueprint.route('/list', methods=['GET'])
+def api_channel_list():
+    Channel = ChannelModel()
+
+    req = request.args
+
+    page = req.get('page', 1)
+    limit = req.get('limit', 20)
+
+
+    Channel = ChannelModel()
+
+    channel_list = Channel.findlist(page, limit)
+    channel_count = Channel.count()
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': {
+            'list': channel_list,
+            'count': channel_count
+        },
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)

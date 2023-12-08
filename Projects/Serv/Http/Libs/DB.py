@@ -82,3 +82,24 @@ class DB:
     def __init_subclass__(cls, **config):
         super().__init_subclass__(**config)
         cls.connect(config.get('db_name', 'Data/config.db'))
+
+    @classmethod
+    def __del_subclass__(cls):
+        cls.close()
+        super().__del_subclass__()
+
+    @classmethod
+    def counts(cls):
+        query = f'SELECT COUNT(*) FROM {cls.table_name}'
+        return cls.execute(query)[0][0]
+
+    @classmethod
+    def select(cls, page=1, limit=20):
+        query = f'SELECT * FROM {cls.table_name} LIMIT ? OFFSET ?'
+        print(query)
+        return cls.execute(query, (limit, (int(page) - 1) * int(limit)))
+
+    @classmethod
+    def selectAll(cls):
+        query = f'SELECT * FROM {cls.table_name}'
+        return cls.execute(query)
