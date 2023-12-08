@@ -296,12 +296,8 @@ pyrightconfig.json
 
 
 !/.env
-MySQL/database/*
-!MySQL/database/.gitkeep
-MySQL/log/*
-!MySQL/log/.gitkeep
-Nginx/letsencrypt/*
-!Nginx/letsencrypt/.gitkeep
 Nginx/log/*
 !Nginx/log/.gitkeep
 !Nginx/log/App
+Projects/Serv/Data/*
+!Projects/Serv/Data/.gitkeep
