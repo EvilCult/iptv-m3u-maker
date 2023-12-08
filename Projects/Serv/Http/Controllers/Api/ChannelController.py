@@ -110,3 +110,37 @@ def api_channel_list():
     }
 
     return json.dumps(apiMsg)
+
+@channel_blueprint.route('/update', methods=['POST'])
+def api_channel_update():
+    req = request.get_json()
+
+    channel = {
+        'id': req['id'],
+    }
+
+    if 'title' in req:
+        channel['title'] = req['title']
+
+    if 'url' in req:
+        channel['url'] = req['url']
+
+    if 'alive' in req:
+        channel['alive'] = req['alive']
+
+    if 'ping' in req:
+        channel['ping'] = req['ping']
+
+    if 'isdel' in req:
+        channel['isdel'] = req['isdel']
+
+    ChannelModel().update(**channel)
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': {},
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)
