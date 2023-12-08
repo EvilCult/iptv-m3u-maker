@@ -6,14 +6,12 @@ class Launch(DB):
     @classmethod
     def chkDB(cls):
         db_name = 'Data/config.db'
-        if not Path(db_name).exists():
+        if not cls.execute('SELECT * FROM sqlite_master WHERE type="table" AND name="admin"'):
             cls.initDB(db_name)
-            print('no')
-        else:
-            print('yes')
 
     @classmethod
     def initDB(cls, db_name):
+        print('initDB')
         cls.connect(db_name)
         queries = [
             '''
@@ -23,6 +21,7 @@ class Launch(DB):
                 "pwd" varchar DEFAULT '',
                 "lastlogin" varchar DEFAULT '',
                 "logintime" varchar DEFAULT '',
+                "isdel" int DEFAULT '0',
                 PRIMARY KEY (id)
             );
             ''',
