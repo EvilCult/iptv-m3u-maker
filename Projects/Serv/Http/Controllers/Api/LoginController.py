@@ -9,9 +9,9 @@ login_blueprint = Blueprint("login_blueprint", __name__, url_prefix="/api/v1/log
 
 @login_blueprint.route('/', methods=['POST'])
 def api_login():
-    data = request.get_json()
-    uname = data['uname']
-    pwd = data['pwd']
+    req = request.get_json()
+    uname = req['uname']
+    pwd = req['pwd']
     admin = AdminModel().login(uname, pwd)
 
     apiMsg = {

@@ -81,4 +81,4 @@ class DB:
     @classmethod
     def __init_subclass__(cls, **config):
         super().__init_subclass__(**config)
-        cls.connect(config.get('db_name', 'Data/config.sqlite3'))
+        cls.connect(config.get('db_name', 'Data/config.db'))
