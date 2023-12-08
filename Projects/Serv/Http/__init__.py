@@ -1,4 +1,5 @@
 # pyright: reportMissingModuleSource=false
+# pyright: reportMissingImports=false
 from flask import Flask
 
 from Http.Libs import Launch

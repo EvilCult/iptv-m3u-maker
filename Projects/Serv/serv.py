@@ -1,4 +1,5 @@
 # pyright: reportMissingModuleSource=false
+# pyright: reportMissingImports=false
 from flask import send_from_directory
 from Http import app
 

@@ -1,3 +1,5 @@
+# pyright: reportMissingModuleSource=false
+# pyright: reportMissingImports=false
 from flask import request
 import time, jwt, json
 
