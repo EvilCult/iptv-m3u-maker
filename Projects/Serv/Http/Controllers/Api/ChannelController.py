@@ -182,3 +182,16 @@ def api_channel_delete():
     }
 
     return json.dumps(apiMsg)
+
+@channel_blueprint.route('/info/<int:id>', methods=['GET'])
+def api_channel_info(id):
+    channel = ChannelModel().findById(id)
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': channel,
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)
