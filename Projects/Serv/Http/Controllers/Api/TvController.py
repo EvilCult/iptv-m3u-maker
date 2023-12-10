@@ -170,3 +170,31 @@ def api_tv_update():
     }
 
     return json.dumps(apiMsg)
+
+@tv_blueprint.route('/list', methods=['GET'])
+def api_tv_list():
+    req = request.args
+
+    page = int(req['page']) if 'page' in req else 1
+    limit = int(req['limit']) if 'limit' in req else 10
+    offset = (page - 1) * limit
+
+    tv = {
+        'offset': offset,
+        'limit': limit
+    }
+
+    tv_list = TvModel().findlistbywhere(**tv)
+    tv_count = TvModel().count(**tv)
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': {
+            'list': tv_list,
+            'count': tv_count
+        },
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)

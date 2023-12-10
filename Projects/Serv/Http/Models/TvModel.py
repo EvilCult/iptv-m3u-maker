@@ -20,8 +20,11 @@ class TvModel(DB):
     def delete(self, id):
         self.remove(id)
 
-    def count(self):
-        return self.counts()
+    def count(self, **kwargs):
+        return self.counts(**kwargs)
 
     def findlist(self, page=1, limit=10):
         return self.select(page, limit)
+
+    def findlistbywhere(self, **kwargs):
+        return self.where(**kwargs)

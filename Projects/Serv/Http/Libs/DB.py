@@ -40,12 +40,23 @@ class DB:
 
     @classmethod
     def where(cls, **kwargs):
+        query = f'SELECT * FROM {cls.table_name}'
+
         conditions = []
         values = []
         for key, value in kwargs.items():
+            if key == 'limit' or key == 'offset':
+                continue
             conditions.append(f'{key}=?')
             values.append(value)
-        query = f'SELECT * FROM {cls.table_name} WHERE {" AND ".join(conditions)}'
+        if len(conditions) > 0:
+            query += f' WHERE {" AND ".join(conditions)}'
+
+        if 'limit' in kwargs:
+            query += f' LIMIT {kwargs["limit"]}'
+        if 'offset' in kwargs:
+            query += f' OFFSET {kwargs["offset"]}'
+
         result = cls.execute(query, values)
         return cls.fmtResult(result)
 
@@ -92,8 +103,19 @@ class DB:
         super().__del_subclass__()
 
     @classmethod
-    def counts(cls):
+    def counts(cls, **kwargs):
         query = f'SELECT COUNT(*) FROM {cls.table_name}'
+
+        conditions = []
+        values = []
+        for key, value in kwargs.items():
+            if key == 'limit' or key == 'offset':
+                continue
+            conditions.append(f'{key}=?')
+            values.append(value)
+        if len(conditions) > 0:
+            query += f' WHERE {" AND ".join(conditions)}'
+
         return cls.execute(query)[0][0]
 
     @classmethod
