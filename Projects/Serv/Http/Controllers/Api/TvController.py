@@ -1,7 +1,7 @@
 # pyright: reportMissingModuleSource=false
 # pyright: reportMissingImports=false
 from flask import Blueprint, request
-from Http.Models import TvModel
+from Http.Models import TvModel, EpgModel
 import json, time, requests, chardet
 
 tv_blueprint = Blueprint("tv_blueprint", __name__, url_prefix="/api/v1/tv")
@@ -45,7 +45,13 @@ def api_tv_addurl():
         }
     else:
         res.encoding = 'utf-8'
-        tv_ids = addTvData(res.text)
+        epg = {
+            'title': req['title'] if 'title' in req else 'untitled',
+            'url': url,
+            'addtime': int(time.time())
+        }
+        epg_id = EpgModel().add(**epg)
+        tv_ids = addTvData(res.text, epg_id)
 
         apiMsg = {
             'code': 0,
@@ -56,7 +62,7 @@ def api_tv_addurl():
 
     return json.dumps(apiMsg)
 
-def addTvData(data):
+def addTvData(data, epg_id):
     tv_list = []
     tv_tvgid = ''
     tv_tvgname = ''
@@ -77,6 +83,7 @@ def addTvData(data):
                 'tvgid': tv_tvgid,
                 'title': tv_tvgname,
                 'icon': '',
+                'epgid': epg_id,
                 'category': 0
             }
             tv_list.append(tv)
