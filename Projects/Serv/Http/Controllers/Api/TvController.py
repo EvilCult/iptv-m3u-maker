@@ -2,7 +2,7 @@
 # pyright: reportMissingImports=false
 from flask import Blueprint, request
 from Http.Models import TvModel, EpgModel, GuideModel
-import json, time, requests, datetime
+import json, time, requests, datetime, re
 
 tv_blueprint = Blueprint("tv_blueprint", __name__, url_prefix="/api/v1/tv")
 
@@ -105,12 +105,14 @@ def addGuideData(data, epg_id):
     for line in data.split('\n'):
         line = line.strip()
         if line.startswith('<programme'):
-            tv_id= line.split('"')[1]
-            start = line.split('"')[3]
-            stop = line.split('"')[5]
+            tv_id = re.findall(r'channel="(.*?)"', line)[0]
+
+            start = re.findall(r'start="(.*?)"', line)[0]
             start = datetime.datetime.strptime(start, '%Y%m%d%H%M%S %z')
-            stop = datetime.datetime.strptime(stop, '%Y%m%d%H%M%S %z')
             start = int(start.timestamp())
+
+            stop = re.findall(r'stop="(.*?)"', line)[0]
+            stop = datetime.datetime.strptime(stop, '%Y%m%d%H%M%S %z')
             stop = int(stop.timestamp())
 
             guide = {
