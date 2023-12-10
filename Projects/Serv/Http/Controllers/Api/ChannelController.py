@@ -99,7 +99,6 @@ def api_channel_list():
 
     channel_list = Channel.findlist(page, limit)
     channel_count = Channel.count()
-
     apiMsg = {
         'code': 0,
         'msg' : '',

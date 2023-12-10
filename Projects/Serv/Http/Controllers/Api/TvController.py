@@ -175,17 +175,25 @@ def api_tv_update():
 def api_tv_list():
     req = request.args
 
-    page = int(req['page']) if 'page' in req else 1
-    limit = int(req['limit']) if 'limit' in req else 10
-    offset = (page - 1) * limit
+    page = req.get('page', 1)
+    limit = req.get('limit', 20)
+    orderBy = req.get('orderBy', 'tvgid')
+    search = req.get('search', '')
+    keyword = req.get('keyword', '')
 
-    tv = {
-        'offset': offset,
-        'limit': limit
+    tvFilter = {
+        'page': page,
+        'limit': limit,
+        'orderBy': orderBy,
+        'where': {
+            'isdel': 0
+        }
     }
+    if search != '':
+        tvFilter['where'][str(search) + ' LIKE'] = keyword
 
-    tv_list = TvModel().findlistbywhere(**tv)
-    tv_count = TvModel().count(**tv)
+    tv_list = TvModel().findlist(**tvFilter)
+    tv_count = TvModel().count(**tvFilter)
 
     apiMsg = {
         'code': 0,

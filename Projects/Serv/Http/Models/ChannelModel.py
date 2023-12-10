@@ -6,22 +6,20 @@ class ChannelModel(DB):
     table_name = 'channel'
 
     def findById(self, id):
-        return self.find(id)
+        return self.select(id=id, isdel=0).fetch()
 
     def add(self, **kwargs):
-        self.data = kwargs
-        self.save()
-        return self.data['id']
+        return self.save(**kwargs)
 
     def update(self, **kwargs):
-        self.data = kwargs
-        self.save()
+        self.save(**kwargs)
 
     def delete(self, id):
         self.remove(id)
 
     def count(self):
-        return self.counts()
+        return self.counts(isdel=0).fetch()
 
     def findlist(self, page=1, limit=10):
-        return self.select(page, limit)
+        return self.select(isdel=0).orderBy('id desc').page(page, limit).fetch()
+
