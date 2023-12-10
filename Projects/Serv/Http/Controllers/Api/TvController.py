@@ -29,8 +29,8 @@ def api_tv_add():
 
     return json.dumps(apiMsg)
 
-@tv_blueprint.route('/add/url', methods=['PUT'])
-def api_tv_addurl():
+@tv_blueprint.route('/add/epg', methods=['PUT'])
+def api_tv_addepg():
     req = request.get_json()
 
     url = req['url']
@@ -133,3 +133,40 @@ def addGuideData(data, epg_id):
         GuideModel().add(**guide)
 
     return True
+
+@tv_blueprint.route('/update', methods=['POST'])
+def api_tv_update():
+    req = request.get_json()
+
+    if 'id' not in req:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
+    tv = {
+        'id': req['id'],
+    }
+
+    if 'title' in req:
+        tv['title'] = req['title']
+
+    if 'icon' in req:
+        tv['icon'] = req['icon']
+
+    if 'category' in req:
+        tv['category'] = req['category']
+
+    TvModel().update(**tv)
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': True,
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)
