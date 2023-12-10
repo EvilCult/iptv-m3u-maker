@@ -1,7 +1,7 @@
 # pyright: reportMissingModuleSource=false
 # pyright: reportMissingImports=false
 from flask import Blueprint, request
-from Http.Models import ChannelModel
+from Http.Models import TvModel
 import json, time, requests
 
 tv_blueprint = Blueprint("tv_blueprint", __name__, url_prefix="/api/v1/tv")
@@ -10,13 +10,15 @@ tv_blueprint = Blueprint("tv_blueprint", __name__, url_prefix="/api/v1/tv")
 def api_tv_add():
     req = request.get_json()
 
-    channel = {
-        'title': req['title'],
-        'url': req['url'],
-        'addtime': int(time.time()),
+    tv = {
+        'tvgname': req['tvgname'] if 'tvgname' in req else '',
+        'tvgid': req['tvgid'] if 'tvgid' in req else 0,
+        'title': req['title'] if 'title' in req else (req['tvgname'] if 'tvgname' in req else ''),
+        'icon': req['icon'] if 'icon' in req else '',
+        'category': req['category'] if 'category' in req else 0
     }
 
-    tv_id = ChannelModel().add(**channel)
+    tv_id = TvModel().add(**tv)
 
     apiMsg = {
         'code': 0,

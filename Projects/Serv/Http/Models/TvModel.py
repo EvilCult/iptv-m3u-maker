@@ -2,7 +2,7 @@
 import hashlib
 from Http.Libs import DB
 
-class ChannelModel(DB):
+class TvModel(DB):
     table_name = 'tv'
 
     def findById(self, id):

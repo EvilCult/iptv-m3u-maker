@@ -11,8 +11,8 @@ def api_channel_add():
     req = request.get_json()
 
     channel = {
-        'title': req['title'],
-        'url': req['url'],
+        'title': req['title'] if 'title' in req else 'Untitled',
+        'url': req['url'] if 'url' in req else '',
         'addtime': int(time.time()),
     }
 
