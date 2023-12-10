@@ -37,7 +37,10 @@ class Launch(DB):
             );
             ''',
             '''
-            CREATE TABLE "channel" ("id" integer,"title" varchar,"url" varchar,"alive" int DEFAULT '1',"ping" int DEFAULT '0',"addtime" varchar,"isdel" int DEFAULT '0', PRIMARY KEY (id));
+            CREATE TABLE "channel" ("id" integer,"title" varchar,"url" varchar,"bindtv" int DEFAULT '0',"alive" int DEFAULT '1',"ping" int DEFAULT '0',"addtime" varchar,"isdel" int DEFAULT '0', PRIMARY KEY (id));
+            ''',
+            '''
+            CREATE TABLE "tv" ("id" integer,"title" varchar,"tvgname" varchar,"tvgid" int DEFAULT '0',"icon" text,"category" int,"isdel" int DEFAULT '0', PRIMARY KEY (id));
             '''
         ]
         for query in queries:
