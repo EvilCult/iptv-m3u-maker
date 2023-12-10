@@ -1,8 +1,8 @@
 # pyright: reportMissingModuleSource=false
 # pyright: reportMissingImports=false
 from flask import Blueprint, request
-from Http.Models import TvModel, EpgModel
-import json, time, requests, chardet
+from Http.Models import TvModel, EpgModel, GuideModel
+import json, time, requests, datetime
 
 tv_blueprint = Blueprint("tv_blueprint", __name__, url_prefix="/api/v1/tv")
 
@@ -52,7 +52,7 @@ def api_tv_addurl():
         }
         epg_id = EpgModel().add(**epg)
         tv_ids = addTvData(res.text, epg_id)
-
+        addGuideData(res.text, epg_id)
         apiMsg = {
             'code': 0,
             'msg' : '',
@@ -96,3 +96,38 @@ def addTvData(data, epg_id):
         tv_ids.append(tv_id)
 
     return tv_ids
+
+def addGuideData(data, epg_id):
+    guide_list = []
+
+    data = data.replace('><', '>\n<')
+
+    for line in data.split('\n'):
+        line = line.strip()
+        if line.startswith('<programme'):
+            tv_id= line.split('"')[1]
+            start = line.split('"')[3]
+            stop = line.split('"')[5]
+            start = datetime.datetime.strptime(start, '%Y%m%d%H%M%S %z')
+            stop = datetime.datetime.strptime(stop, '%Y%m%d%H%M%S %z')
+            start = int(start.timestamp())
+            stop = int(stop.timestamp())
+
+            guide = {
+                'epgid'  : epg_id,
+                'tvid'   : tv_id,
+                'title'  : line.split('"')[1],
+                'start'  : start,
+                'stop'   : stop,
+                'addtime': int(time.time())
+            }
+        elif line.startswith('<title'):
+            guide['title'] = line.split('>')[1].split('<')[0]
+            guide_list.append(guide)
+        else:
+            continue
+
+    for guide in guide_list:
+        GuideModel().add(**guide)
+
+    return True

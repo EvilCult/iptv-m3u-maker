@@ -44,6 +44,9 @@ class Launch(DB):
             ''',
             '''
             CREATE TABLE "tv" ("id" integer,"title" varchar,"tvgname" varchar,"tvgid" varchar,"icon" text,"category" int,"epgid" int DEFAULT '0',"isdel" int DEFAULT '0', PRIMARY KEY (id));
+            ''',
+            '''
+            CREATE TABLE "guide" ("id" integer,"epgid" int,"tvid" varchar,"title" varchar,"start" varchar,"stop" varchar,"addtime" varchar, PRIMARY KEY (id));
             '''
         ]
         for query in queries:
