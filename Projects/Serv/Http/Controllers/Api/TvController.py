@@ -207,7 +207,29 @@ def api_tv_list():
 
     return json.dumps(apiMsg, ensure_ascii=False)
 
-@tv_blueprint.route('/list/guide/<path:tvid>', methods=['GET'])
+@tv_blueprint.route('/epg/list', methods=['GET'])
+def api_tv_epg_list():
+    req = request.args
+
+    page = req.get('page', 1)
+    limit = req.get('limit', 20)
+
+    epg_list = EpgModel().findlist(page=page, limit=limit)
+    epg_count = EpgModel().count()
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': {
+            'list': epg_list,
+            'count': epg_count
+        },
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg, ensure_ascii=False)
+
+@tv_blueprint.route('/guide/<path:tvid>', methods=['GET'])
 def api_tv_list_guide(tvid=None):
     guideFilter = {
         'orderBy': 'start',
@@ -316,3 +338,4 @@ def api_tv_remove_epg():
     }
 
     return json.dumps(apiMsg)
+
