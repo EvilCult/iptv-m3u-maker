@@ -17,9 +17,9 @@ class GuideModel(DB):
     def delete(self, id):
         self.remove(id)
 
-    def count(self):
-        return self.counts(isdel=0).fetch()
+    def count(self, **kwargs):
+        return self.counts(**kwargs['where']).fetch()
 
-    def findlist(self, page=1, limit=10):
-        return self.select(isdel=0).orderBy('id desc').page(page, limit).fetch()
+    def findlist(self, **kwargs):
+        return self.select(**kwargs['where']).orderBy(kwargs['orderBy']).fetch()
 

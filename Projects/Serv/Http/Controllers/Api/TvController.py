@@ -205,4 +205,28 @@ def api_tv_list():
         'time': int(time.time())
     }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)
+
+@tv_blueprint.route('/list/guide/<path:tvid>', methods=['GET'])
+def api_tv_list_guide(tvid=None):
+    guideFilter = {
+        'orderBy': 'start',
+        'where': {
+            'tvid': tvid
+        }
+    }
+
+    guide_list = GuideModel().findlist(**guideFilter)
+    guide_count = GuideModel().count(**guideFilter)
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': {
+            'list': guide_list,
+            'count': guide_count
+        },
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg, ensure_ascii=False)

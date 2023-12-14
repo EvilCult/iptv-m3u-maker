@@ -110,7 +110,6 @@ class DB:
 
     @classmethod
     def fetch(cls):
-        print(cls.query, cls.values)
         if 'COUNT(*)' not in cls.query:
             return cls.fmtResult(cls.execute(cls.query, cls.values))
         else:
