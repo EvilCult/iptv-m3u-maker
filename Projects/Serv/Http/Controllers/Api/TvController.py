@@ -230,3 +230,89 @@ def api_tv_list_guide(tvid=None):
     }
 
     return json.dumps(apiMsg, ensure_ascii=False)
+
+@tv_blueprint.route('/remove', methods=['GET'])
+def api_tv_remove():
+    req = request.args
+
+    if 'id' not in req:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
+
+    tv = TvModel().findById(id=req['id'])
+    if tv == None:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
+    tv = tv[0]
+    delInfo = {
+        'id': req['id'],
+        'isdel': 1
+    }
+    TvModel().update(**delInfo)
+
+    delInfo = {
+        'tvid': tv['tvgid']
+    }
+    GuideModel().delete(**delInfo)
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': True,
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)
+
+@tv_blueprint.route('/remove/epg', methods=['GET'])
+def api_tv_remove_epg():
+    req = request.args
+
+    if 'id' not in req:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
+    epg = EpgModel().findById(id=req['id'])
+    if epg == None:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
+    epg = epg[0]
+    delInfo = {
+        'id': req['id'],
+        'isdel': 1
+    }
+    EpgModel().update(**delInfo)
+    TvModel().delete(epgid=epg['id'])
+    GuideModel().delete(epgid=epg['id'])
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': True,
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)

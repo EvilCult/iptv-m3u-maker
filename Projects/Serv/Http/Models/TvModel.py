@@ -14,8 +14,8 @@ class TvModel(DB):
     def update(self, **kwargs):
         self.save(**kwargs)
 
-    def delete(self, id):
-        self.remove(id)
+    def delete(self, **kwargs):
+        self.rmall(**kwargs)
 
     def count(self, **kwargs):
         return self.counts(isdel=0).fetch()

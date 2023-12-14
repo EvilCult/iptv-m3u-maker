@@ -6,7 +6,7 @@ class EpgModel(DB):
     table_name = 'epg'
 
     def findById(self, id):
-        return self.select(id=id, isdel=0).fetch()
+        return self.select(id=id).fetch()
 
     def add(self, **kwargs):
         return self.save(**kwargs)
