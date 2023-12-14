@@ -64,6 +64,49 @@ class DB:
         return cls
 
     @classmethod
+    def counts(cls, **kwargs):
+        cls.query = f"SELECT COUNT(*) FROM {cls.table_name}"
+        cls.values = []
+
+        conditions = []
+        values = []
+        for key, value in kwargs.items():
+            conditions.append(f'{key}=?')
+            values.append(value)
+        if len(conditions) > 0:
+            cls.query += f' WHERE {" AND ".join(conditions)}'
+            cls.values += values
+
+        return cls
+
+    @classmethod
+    def rmall(cls, **kwargs):
+        cls.query = f"DELETE FROM {cls.table_name}"
+        cls.values = []
+
+        conditions = []
+        values = []
+        for key, value in kwargs.items():
+            if 'LIKE' not in str(key):
+                conditions.append(f'{key}=?')
+                values.append(value)
+            else:
+                conditions.append(f'{key} ?')
+                values.append('%' + value + '%')
+        if len(conditions) > 0:
+            cls.query += f' WHERE {" AND ".join(conditions)}'
+            cls.values += values
+
+        cls.execute(cls.query, cls.values)
+
+    @classmethod
+    def upall(cls, **kwargs):
+        cls.query = f"UPDATE {cls.table_name} SET {', '.join([f'{k}=?' for k in kwargs.keys()])}"
+        cls.values = list(kwargs.values())
+
+        cls.execute(cls.query, cls.values)
+
+    @classmethod
     def limit(cls, limit):
         cls.query += f" LIMIT ?"
         cls.values.append(limit)
@@ -90,22 +133,6 @@ class DB:
     @classmethod
     def groupBy(cls, groupBy):
         cls.query += f" GROUP BY {groupBy}"
-        return cls
-
-    @classmethod
-    def counts(cls, **kwargs):
-        cls.query = f"SELECT COUNT(*) FROM {cls.table_name}"
-        cls.values = []
-
-        conditions = []
-        values = []
-        for key, value in kwargs.items():
-            conditions.append(f'{key}=?')
-            values.append(value)
-        if len(conditions) > 0:
-            cls.query += f' WHERE {" AND ".join(conditions)}'
-            cls.values += values
-
         return cls
 
     @classmethod
