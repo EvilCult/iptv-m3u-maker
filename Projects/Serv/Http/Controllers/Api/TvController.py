@@ -62,7 +62,7 @@ def api_tv_addepg():
 
     return json.dumps(apiMsg)
 
-def addTvData(data, epg_id):
+def addTvData(data, epg_id, update=False):
     tv_list = []
     tv_tvgid = ''
     tv_tvgname = ''
@@ -92,8 +92,20 @@ def addTvData(data, epg_id):
 
     tv_ids = []
     for tv in tv_list:
-        tv_id = TvModel().add(**tv)
-        tv_ids.append(tv_id)
+        if not update:
+            tv_id = TvModel().add(**tv)
+            tv_ids.append(tv_id)
+        else:
+            tv_params = {
+                'where': {
+                    'tvgid': tv['tvgid'],
+                    'epgid': tv['epgid']
+                }
+            }
+            tv_counts = TvModel().count(**tv_params)
+            if tv_counts == 0:
+                tv_id = TvModel().add(**tv)
+                tv_ids.append(tv_id)
 
     return tv_ids
 
@@ -339,3 +351,47 @@ def api_tv_remove_epg(id):
 
     return json.dumps(apiMsg)
 
+@tv_blueprint.route('/epg/update', methods=['POST'])
+def api_tv_epg_update():
+    req = request.get_json()
+
+    if 'id' not in req:
+        apiMsg = {
+            'code': 1,
+            'msg' : 'id error',
+            'data': {},
+            'time': int(time.time())
+        }
+        return json.dumps(apiMsg)
+
+    ids = []
+    if int(req['id']) == 0:
+        for epg in EpgModel().findlist():
+            ids.append(epg['id'])
+    else:
+        ids.append(req['id'])
+
+    for id in ids:
+        epg = EpgModel().findById(id=id)
+        if len(epg) == 0:
+            continue
+
+        epg = epg[0]
+        res = requests.get(epg['url'])
+        if res.status_code != 200:
+            continue
+
+        res.encoding = 'utf-8'
+        addTvData(res.text, epg['id'], True)
+
+        GuideModel().delete(epgid=epg['id'])
+        addGuideData(res.text, epg['id'])
+
+    apiMsg = {
+        'code': 0,
+        'msg' : '',
+        'data': True,
+        'time': int(time.time())
+    }
+
+    return json.dumps(apiMsg)

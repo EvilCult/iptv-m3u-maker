@@ -18,7 +18,7 @@ class TvModel(DB):
         self.rmall(**kwargs)
 
     def count(self, **kwargs):
-        return self.counts(isdel=0).fetch()
+        return self.counts(**kwargs['where']).fetch()
 
     def findlist(self, **kwargs):
         return self.select(**kwargs['where']).orderBy(kwargs['orderBy']).page(kwargs['page'], kwargs['limit']).fetch()

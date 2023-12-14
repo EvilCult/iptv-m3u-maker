@@ -23,3 +23,5 @@ class EpgModel(DB):
     def findlist(self, page=1, limit=10):
         return self.select(isdel=0).orderBy('id desc').page(page, limit).fetch()
 
+    def findall(self):
+        return self.select(isdel=0).orderBy('id desc').fetch()

@@ -71,8 +71,12 @@ class DB:
         conditions = []
         values = []
         for key, value in kwargs.items():
-            conditions.append(f'{key}=?')
-            values.append(value)
+            if 'LIKE' not in str(key):
+                conditions.append(f'{key}=?')
+                values.append(value)
+            else:
+                conditions.append(f'{key} ?')
+                values.append('%' + value + '%')
         if len(conditions) > 0:
             cls.query += f' WHERE {" AND ".join(conditions)}'
             cls.values += values
