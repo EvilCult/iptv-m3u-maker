@@ -97,7 +97,7 @@ def api_channel_list():
 
     Channel = ChannelModel()
 
-    channel_list = Channel.findlist(page, limit)
+    channel_list = Channel.findpage(page, limit)
     channel_count = Channel.count()
     apiMsg = {
         'code': 0,

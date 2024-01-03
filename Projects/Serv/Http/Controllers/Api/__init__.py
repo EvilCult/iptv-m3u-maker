@@ -17,3 +17,6 @@ app.register_blueprint(channel_blueprint)
 
 from Http.Controllers.Api.TvController import tv_blueprint
 app.register_blueprint(tv_blueprint)
+
+from Http.Controllers.Api.MappingController import mapping_blueprint
+app.register_blueprint(mapping_blueprint)

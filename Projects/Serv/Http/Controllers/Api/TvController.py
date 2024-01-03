@@ -226,7 +226,7 @@ def api_tv_epg_list():
     page = req.get('page', 1)
     limit = req.get('limit', 20)
 
-    epg_list = EpgModel().findlist(page=page, limit=limit)
+    epg_list = EpgModel().findpage(page=page, limit=limit)
     epg_count = EpgModel().count()
 
     apiMsg = {
@@ -366,7 +366,7 @@ def api_tv_epg_update():
 
     ids = []
     if int(req['id']) == 0:
-        for epg in EpgModel().findlist():
+        for epg in EpgModel().findall():
             ids.append(epg['id'])
     else:
         ids.append(req['id'])

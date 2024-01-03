@@ -20,7 +20,7 @@ class EpgModel(DB):
     def count(self):
         return self.counts(isdel=0).fetch()
 
-    def findlist(self, page=1, limit=10):
+    def findpage(self, page=1, limit=10):
         return self.select(isdel=0).orderBy('id desc').page(page, limit).fetch()
 
     def findall(self):
