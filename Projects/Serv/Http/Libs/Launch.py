@@ -6,14 +6,12 @@ class Launch(DB):
     @classmethod
     def chkDB(cls):
         db_name = 'Data/config.db'
-        if not Path(db_name).exists():
+        if not cls.execute('SELECT * FROM sqlite_master WHERE type="table" AND name="admin"'):
             cls.initDB(db_name)
-            print('no')
-        else:
-            print('yes')
 
     @classmethod
     def initDB(cls, db_name):
+        print('initDB')
         cls.connect(db_name)
         queries = [
             '''
@@ -23,6 +21,7 @@ class Launch(DB):
                 "pwd" varchar DEFAULT '',
                 "lastlogin" varchar DEFAULT '',
                 "logintime" varchar DEFAULT '',
+                "isdel" int DEFAULT '0',
                 PRIMARY KEY (id)
             );
             ''',
@@ -38,7 +37,16 @@ class Launch(DB):
             );
             ''',
             '''
-            CREATE TABLE "channel" ("id" integer,"title" varchar,"url" varchar,"alive" int DEFAULT '1',"ping" int DEFAULT '0',"addtime" varchar,"isdel" int DEFAULT '0', PRIMARY KEY (id));
+            CREATE TABLE "channel" ("id" integer,"title" varchar,"url" varchar,"bindtv" int DEFAULT '0',"alive" int DEFAULT '1',"ping" int DEFAULT '0',"addtime" varchar,"isdel" int DEFAULT '0', PRIMARY KEY (id));
+            ''',
+            '''
+            CREATE TABLE "epg" ("id" integer,"title" varchar,"url" text,"addtime" varchar,"isdel" int DEFAULT '0', PRIMARY KEY (id));
+            ''',
+            '''
+            CREATE TABLE "tv" ("id" integer,"title" varchar,"tvgname" varchar,"tvgid" varchar,"icon" text,"category" int,"epgid" int DEFAULT '0',"sort" int DEFAULT '1',"isdel" int DEFAULT '0', PRIMARY KEY (id));
+            ''',
+            '''
+            CREATE TABLE "guide" ("id" integer,"epgid" int,"tvid" varchar,"title" varchar,"start" varchar,"stop" varchar,"addtime" varchar, PRIMARY KEY (id));
             '''
         ]
         for query in queries:

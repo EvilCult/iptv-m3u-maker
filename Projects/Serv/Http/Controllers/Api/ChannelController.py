@@ -11,8 +11,8 @@ def api_channel_add():
     req = request.get_json()
 
     channel = {
-        'title': req['title'],
-        'url': req['url'],
+        'title': req['title'] if 'title' in req else 'Untitled',
+        'url': req['url'] if 'url' in req else '',
         'addtime': int(time.time()),
     }
 
@@ -97,9 +97,8 @@ def api_channel_list():
 
     Channel = ChannelModel()
 
-    channel_list = Channel.findlist(page, limit)
+    channel_list = Channel.findpage(page, limit)
     channel_count = Channel.count()
-
     apiMsg = {
         'code': 0,
         'msg' : '',

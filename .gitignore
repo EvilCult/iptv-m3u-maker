@@ -298,6 +298,6 @@ pyrightconfig.json
 !/.env
 Nginx/log/*
 !Nginx/log/.gitkeep
-!Nginx/log/App
+!Nginx/log/Serv
 Projects/Serv/Data/*
 !Projects/Serv/Data/.gitkeep
