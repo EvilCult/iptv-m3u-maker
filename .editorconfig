@@ -14,7 +14,7 @@ trim_trailing_whitespace = false
 [*.yml]
 indent_size = 2
 
-[*.js]
+[*.{js,jsx,ts,tsx}]
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
