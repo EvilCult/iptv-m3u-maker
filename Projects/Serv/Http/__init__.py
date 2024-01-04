@@ -12,7 +12,7 @@ Launch().chkDB()
 def after_request(res):
     res.headers['Access-Control-Allow-Origin'] = '*'
     res.headers['Access-Control-Allow-Methods'] = 'OPTIONS,GET,POST,DELETE,PATCH,PUT'
-    res.headers['Access-Control-Allow-Headers'] = 'Authorization'
+    res.headers['Access-Control-Allow-Headers'] = 'Authorization, Content-Type'
     return res
 
 app.after_request(after_request)

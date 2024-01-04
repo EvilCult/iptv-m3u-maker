@@ -1,45 +1,64 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import CssBaseline from '@mui/material/CssBaseline'
-import TextField from '@mui/material/TextField'
-import Box from '@mui/material/Box'
+import {
+  Avatar,
+  CssBaseline,
+  TextField,
+  Box,
+  Typography,
+  Container
+} from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
-
+import LoadingButton from '@mui/lab/LoadingButton'
+import useLogin from '@/hooks/auth/loginHook'
 import Copyright from '@/components/appfooter'
+import { useRouter } from 'next/router'
+import Notify from '@/components/notify'
+import * as lang from '@/libs/langs'
 
 const Login = () => {
+  const router = useRouter()
   const [uname, setUname] = useState('')
-  const [uNameErr, setuNameErr] = useState(false)
+  const [uNameErr, setuNameErr] = useState([false,''])
   const [pwd, setPwd] = useState('')
-  const [uPwdErr, setuPwdErr] = useState(false)
+  const [uPwdErr, setuPwdErr] = useState([false,''])
   const [submit, setSubmit] = useState(false)
-  // const notify = useRef()
+  const { loading, msg, setMsg } = useLogin(uname, pwd, submit)
+  const notify = useRef<{ handleNoticeOpen: (msg: string, type: string) => void } | null>(null)
 
-  // const { loading, msg, setMsg } = useLogin(uname, pwd, submit)
-
-  const handleKeyup = (e) => {
-    if(e.keyCode === 13) {
+  const handleKeyup = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
       handleLogin()
     }
   }
 
   const handleLogin = () => {
-    setuNameErr(false)
-    setuPwdErr(false)
+    setuNameErr([false,''])
+    setuPwdErr([false,''])
     if (uname !== '' && pwd !== '') {
       setSubmit(true)
-      console.log(uname, pwd)
     } else {
       if (uname === '') {
-        setuNameErr(true)
-      } else {
-        setuPwdErr(true)
+        setuNameErr([true, lang.output('user_name_empty')])
+      }
+      if (pwd === ''){
+        setuPwdErr([true, lang.output('user_pwd_empty')])
       }
     }
   }
+
+  useEffect(() => {
+    if (msg === 'suc') {
+      (notify.current) ? notify.current.handleNoticeOpen(lang.output('login_success'), 'suc') : null
+      setTimeout(() => {
+        router.push("/")
+      }, 1000)
+    } else if (msg !== ''){
+      (notify.current) ? notify.current.handleNoticeOpen(msg, 'err') : null
+    }
+
+    setMsg('')
+    setSubmit(false)
+  }, [msg, router, setMsg])
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,44 +75,48 @@ const Login = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          {lang.output('site_title')}
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>
           <TextField
-            error={uNameErr}
+            error={!!uNameErr[0]}
+            helperText={uNameErr[1]}
             margin="normal"
             required
             fullWidth
             id="username"
-            label="Username"
+            label={lang.output('user_name')}
             name="username"
             autoFocus
             onKeyUp={handleKeyup}
             onChange={(e) => setUname(e.target.value)}
           />
           <TextField
-            error={uPwdErr}
+            error={!!uPwdErr[0]}
+            helperText={uPwdErr[1]}
             margin="normal"
             required
             fullWidth
             name="password"
-            label="Password"
+            label={lang.output('user_pwd')}
             type="password"
             id="password"
             onKeyUp={handleKeyup}
             onChange={(e) => setPwd(e.target.value)}
           />
-          <Button
+          <LoadingButton
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             onClick={handleLogin}
+            loading={loading}
           >
-            Sign In
-          </Button>
+            <span>{lang.output('sign_in')}</span>
+          </LoadingButton>
         </Box>
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} author='EvilCult' />
+      <Notify ref={notify} />
     </Container>
   )
 }
