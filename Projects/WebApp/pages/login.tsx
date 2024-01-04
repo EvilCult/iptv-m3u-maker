@@ -25,6 +25,10 @@ const Login = () => {
   const { loading, msg, setMsg } = useLogin(uname, pwd, submit)
   const notify = useRef<{ handleNoticeOpen: (msg: string, type: string) => void } | null>(null)
 
+  useEffect(() => {
+    router.prefetch("/")
+  })
+
   const handleKeyup = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleLogin()
