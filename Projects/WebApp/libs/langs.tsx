@@ -16,6 +16,7 @@ export const output = (code:string = 'null') => {
       'user_name_empty': '用户名不能为空!',
       'user_pwd_empty': '密码不能为空!',
       'login_success': '登录成功!页面跳转中...',
+      'menu_channel_list': '资源列表',
     },
   }
 

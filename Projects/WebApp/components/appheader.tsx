@@ -19,7 +19,10 @@ import {
   MoveToInbox as InboxIcon,
   Mail as MailIcon,
   Menu as MenuIcon,
+  OndemandVideo as VideoIcon
 } from '@mui/icons-material'
+import * as lang from '@/libs/langs'
+
 
 const AppHeader = () => {
   const [open, setOpen] = useState(true)
@@ -65,6 +68,45 @@ const AppHeader = () => {
     setOpen(!open)
   }
 
+  const handelGoto = (url: string) => {
+    if (url !== '') {
+      router.push(url)
+    }
+  }
+
+  interface ListItemLinkProps {
+    icon?: React.ReactElement
+    primary: string
+    to: string
+  }
+  const ListItemLink = (props: ListItemLinkProps) => {
+    const { icon, primary, to } = props
+
+    return (
+      <ListItem key={primary} disablePadding sx={{ display: 'block' }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            justifyContent: open ? 'initial' : 'center',
+            px: 2.5,
+          }}
+          onClick={ () => handelGoto(to) }
+        >
+          {icon ? <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: open ? 3 : 'auto',
+              justifyContent: 'center',
+            }}
+          >
+          {icon}
+          </ListItemIcon> : null}
+          <ListItemText primary={ open ? primary : '' }  />
+        </ListItemButton>
+      </ListItem>
+    )
+  }
+
   return (
     <React.Fragment>
         <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -97,50 +139,11 @@ const AppHeader = () => {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            <ListItem key='list_a' disablePadding sx={{ display: 'block' }} >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                 <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary={ open ? "List Item A" : '' }  />
-              </ListItemButton>
-            </ListItem>
+            <ListItemLink icon={<VideoIcon />} primary={lang.output('menu_channel_list')} to='/channel/list' />
           </List>
           <Divider />
           <List>
-            <ListItem key='list_b' disablePadding sx={{ display: 'block' }} >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                 <MailIcon />
-                </ListItemIcon>
-                <ListItemText primary={ open ? "List Item B" : '' }  />
-              </ListItemButton>
-            </ListItem>
-
+            <ListItemLink icon={<InboxIcon />} primary='test message' to='' />
           </List>
         </Box>
       </Drawer>
