@@ -28,3 +28,11 @@ services:
             - ./Projects/:/srv/
             - ./Nginx/log/:/var/log/uwsgi/
         tty: true
+    npm:
+      image: node
+      container_name: Npm
+      ports:
+        - '3000:3000'
+      volumes:
+        - ./Projects/:/srv/
+      tty: true

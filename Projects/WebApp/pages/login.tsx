@@ -119,7 +119,7 @@ const Login = () => {
           </LoadingButton>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} author='EvilCult' />
+      <Copyright sx={{ mt: 8, mb: 4 }} />
       <Notify ref={notify} />
     </Container>
   )

@@ -8,7 +8,7 @@ const Copyright = (props: any) => {
         {'Code with ❤️ by '}
         <NextLink href="https://github.com/EvilCult/iptv-m3u-maker" legacyBehavior passHref>
         <MuiLink color="inherit">
-          {props.author}
+          {'EvilCult'}
         </MuiLink>
         </NextLink>
       <br />
