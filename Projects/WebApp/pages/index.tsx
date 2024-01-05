@@ -7,8 +7,9 @@ import {
 } from '@mui/material'
 import AppHeader from '@/components/appheader'
 import Copyright from '@/components/appfooter'
+import exp from 'constants'
 
-export default function ClippedDrawer() {
+const DashBoard = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppHeader />
@@ -24,3 +25,5 @@ export default function ClippedDrawer() {
     </Box>
   )
 }
+
+export default DashBoard
