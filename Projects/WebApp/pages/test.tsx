@@ -8,7 +8,20 @@ import {
 import AppHeader from '@/components/appheader'
 import Copyright from '@/components/appfooter'
 
+import * as ChannelApi from '@/api/channelApi'
+
 const DashBoard = () => {
+
+  const response = ChannelApi.list(1)
+  response.then(
+    (res: any) => {
+      console.log(res)
+
+    },
+    () => {
+    }
+  )
+  .finally(() => {})
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -19,9 +32,7 @@ const DashBoard = () => {
         <Typography paragraph>
           {process.env.API_URL}
         </Typography>
-        <Box sx={{ mt: 'auto' , p: 2}}>
-          <Copyright />
-        </Box>
+        <Box sx={{ mt: 'auto' , p: 2}}><Copyright /></Box>
       </Box>
     </Box>
   )

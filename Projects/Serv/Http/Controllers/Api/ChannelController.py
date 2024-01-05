@@ -25,7 +25,7 @@ def api_channel_add():
         'time': int(time.time())
     }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)
 
 @channel_blueprint.route('/add/txt', methods=['PUT'])
 def api_channel_addtxt():
@@ -40,7 +40,7 @@ def api_channel_addtxt():
         'time': int(time.time())
     }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)
 
 @channel_blueprint.route('/add/url', methods=['PUT'])
 def api_channel_addurl():
@@ -66,7 +66,7 @@ def api_channel_addurl():
             'time': int(time.time())
         }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)
 
 def addChannelData(data):
     channel_list = []
@@ -109,7 +109,7 @@ def api_channel_list():
         'time': int(time.time())
     }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)
 
 @channel_blueprint.route('/info/<int:id>', methods=['GET'])
 def api_channel_info(id):
@@ -130,7 +130,7 @@ def api_channel_info(id):
             'time': int(time.time())
         }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)
 
 @channel_blueprint.route('/update', methods=['POST'])
 def api_channel_update():
@@ -143,7 +143,7 @@ def api_channel_update():
             'data': {},
             'time': int(time.time())
         }
-        return json.dumps(apiMsg)
+        return json.dumps(apiMsg, ensure_ascii=False)
 
     channel = {
         'id': req['id'],
@@ -170,7 +170,7 @@ def api_channel_update():
         'time': int(time.time())
     }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)
 
 @channel_blueprint.route('/delete', methods=['DELETE'])
 def api_channel_delete():
@@ -183,7 +183,7 @@ def api_channel_delete():
             'data': {},
             'time': int(time.time())
         }
-        return json.dumps(apiMsg)
+        return json.dumps(apiMsg, ensure_ascii=False)
 
     #soft delete
     channel = {
@@ -202,4 +202,4 @@ def api_channel_delete():
         'time': int(time.time())
     }
 
-    return json.dumps(apiMsg)
+    return json.dumps(apiMsg, ensure_ascii=False)

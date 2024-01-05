@@ -7,7 +7,6 @@ import {
 } from '@mui/material'
 import AppHeader from '@/components/appheader'
 import Copyright from '@/components/appfooter'
-import { timeStamp } from 'console'
 
 const DashBoard = () => {
 
@@ -20,9 +19,7 @@ const DashBoard = () => {
         <Typography paragraph>
           {process.env.API_URL}
         </Typography>
-        <Box sx={{ mt: 'auto' , p: 2}}>
-          <Copyright />
-        </Box>
+        <Box sx={{ mt: 'auto' , p: 2}}><Copyright /></Box>
       </Box>
     </Box>
   )

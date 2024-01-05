@@ -21,7 +21,7 @@ import {
   Menu as MenuIcon,
   OndemandVideo as VideoIcon
 } from '@mui/icons-material'
-import * as lang from '@/libs/langs'
+import lang from '@/libs/langs'
 
 
 const AppHeader = () => {
@@ -139,7 +139,7 @@ const AppHeader = () => {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            <ListItemLink icon={<VideoIcon />} primary={lang.output('menu_channel_list')} to='/channel/list' />
+            <ListItemLink icon={<VideoIcon />} primary={lang('menu_channel_list')} to='/channel/list' />
           </List>
           <Divider />
           <List>

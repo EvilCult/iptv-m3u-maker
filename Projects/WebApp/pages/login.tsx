@@ -13,7 +13,7 @@ import useLogin from '@/hooks/auth/loginHook'
 import Copyright from '@/components/appfooter'
 import { useRouter } from 'next/router'
 import Notify from '@/components/notify'
-import * as lang from '@/libs/langs'
+import lang from '@/libs/langs'
 
 const Login = () => {
   const router = useRouter()
@@ -53,17 +53,17 @@ const Login = () => {
       setSubmit(true)
     } else {
       if (uname === '') {
-        setuNameErr([true, lang.output('user_name_empty')])
+        setuNameErr([true, lang('user_name_empty')])
       }
       if (pwd === ''){
-        setuPwdErr([true, lang.output('user_pwd_empty')])
+        setuPwdErr([true, lang('user_pwd_empty')])
       }
     }
   }
 
   useEffect(() => {
     if (msg === 'suc') {
-      (notify.current) ? notify.current.handleNoticeOpen(lang.output('login_success'), 'suc') : null
+      (notify.current) ? notify.current.handleNoticeOpen(lang('login_success'), 'suc') : null
       setTimeout(() => {
         router.push("/")
       }, 1000)
@@ -90,7 +90,7 @@ const Login = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          {lang.output('site_title')}
+          {lang('site_title')}
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>
           <TextField
@@ -100,7 +100,7 @@ const Login = () => {
             required
             fullWidth
             id="username"
-            label={lang.output('user_name')}
+            label={lang('user_name')}
             name="username"
             autoFocus
             onKeyUp={handleKeyup}
@@ -113,7 +113,7 @@ const Login = () => {
             required
             fullWidth
             name="password"
-            label={lang.output('user_pwd')}
+            label={lang('user_pwd')}
             type="password"
             id="password"
             onKeyUp={handleKeyup}
@@ -126,7 +126,7 @@ const Login = () => {
             onClick={handleLogin}
             loading={loading}
           >
-            <span>{lang.output('sign_in')}</span>
+            <span>{lang('sign_in')}</span>
           </LoadingButton>
         </Box>
       </Box>

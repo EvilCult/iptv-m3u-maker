@@ -1,4 +1,4 @@
-export const output = (code:string = 'null') => {
+const lang = (code:string = 'null') => {
   const lang = 'cn'
 
   type LanguageMessages = {
@@ -17,6 +17,12 @@ export const output = (code:string = 'null') => {
       'user_pwd_empty': '密码不能为空!',
       'login_success': '登录成功!页面跳转中...',
       'menu_channel_list': '资源列表',
+      'page_channel_list_title': '资源',
+      'page_channel_list_ping': '延迟',
+      'page_channel_list_stat': '状态',
+      'channel_stat_alive': '良好',
+      'channel_stat_dead': '异常',
+
     },
   }
 
@@ -26,3 +32,5 @@ export const output = (code:string = 'null') => {
     return 'An unknown error occurred!!!'
   }
 }
+
+export default lang

@@ -20,7 +20,7 @@ def auth_middleware():
             'time': int(time.time())
         }
 
-        return json.dumps(apiMsg), 401
+        return json.dumps(apiMsg)
 
     return None
 

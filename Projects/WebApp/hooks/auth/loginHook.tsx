@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 import * as LoginApi from '@/api/loginApi'
 import * as Tools from '@/libs/tools'
-import * as lang from '@/libs/langs'
+import lang from '@/libs/langs'
 
 const useLogin = (uname: string, pwd: string, submit: boolean) => {
   const [msg, setMsg] = useState('')
@@ -30,13 +30,13 @@ const useLogin = (uname: string, pwd: string, submit: boolean) => {
 
               setMsg('suc')
             } else {
-              setMsg(lang.output('uname_pwd_err'))
+              setMsg(lang('uname_pwd_err'))
             }
           }
         },
         () => {
           if (!cancel) {
-            setMsg(lang.output('network_error'))
+            setMsg(lang('network_error'))
           }
         }
       )
