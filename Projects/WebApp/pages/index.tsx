@@ -7,13 +7,15 @@ import {
 } from '@mui/material'
 import AppHeader from '@/components/appheader'
 import Copyright from '@/components/appfooter'
-import exp from 'constants'
+import { timeStamp } from 'console'
 
 const DashBoard = () => {
+
   return (
     <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
       <AppHeader />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', minHeight: '95vh' }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Toolbar />
         <Typography paragraph>
           {process.env.API_URL}

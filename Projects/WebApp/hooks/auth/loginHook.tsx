@@ -23,9 +23,7 @@ const useLogin = (uname: string, pwd: string, submit: boolean) => {
         (res: any) => {
           if (!cancel) {
             if (parseInt(res.code) === 0) {
-              const uInfo = Tools.jwt(res.data).uInfo
-
-              console.log(uInfo)
+              const uInfo = Tools.jwt(res.data)
 
               localStorage.setItem('uInfo', JSON.stringify(uInfo))
               localStorage.setItem('jwt', res.data)

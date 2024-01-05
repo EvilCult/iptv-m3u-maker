@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import { useRouter } from 'next/router'
 import {
   Box,
   Drawer,
@@ -24,6 +24,23 @@ import {
 const AppHeader = () => {
   const [open, setOpen] = useState(true)
   const [drawerWidth, setDrawerWidth] = useState(240)
+  const router = useRouter()
+
+  useEffect(() => {
+    const uInfo = localStorage.getItem('uInfo')
+    if (uInfo === null) {
+      router.push('/login')
+    } else {
+      const uInfoJson = JSON.parse(uInfo)
+      if (
+        uInfoJson.exp < Date.now() / 1000
+        || uInfoJson.iat > Date.now() / 1000
+        || uInfoJson.iss !== 'EvilCult'
+      ) {
+        router.push('/login')
+      }
+    }
+  })
 
   useEffect(() => {
     const sidebar = localStorage.getItem('sidebar') || 'true'

@@ -3,21 +3,16 @@ export const jwt = (jwt = '') => {
   let jwtHeader, jwtPayload
 
   const initJwt = {
-    auth : {
-      iat     : 0,
-      exp     : 0,
-      iss     : '',
-    },
-    uInfo : {
-      uid     : 0,
-      uname: '',
-    }
+    uid  : 0,
+    uname: '',
+    iat  : 0,
+    exp  : 0,
+    iss  : '',
   }
 
   if (jwtBody.length === 3) {
     jwtHeader  = _base64url_decode(jwtBody[0])
     jwtPayload = _base64url_decode(jwtBody[1])
-    console.log(jwtHeader)
 
     const header = {
       alg: jwtHeader.alg ? jwtHeader.alg : '',
@@ -28,17 +23,12 @@ export const jwt = (jwt = '') => {
       header.alg.toLowerCase() === 'hs256'
       && header.typ.toLowerCase() ==='jwt'
     ) {
-      console.log(jwtPayload)
       const jwtInfo = {
-        auth : {
-          iat: jwtPayload.iat ? jwtPayload.iat: 0,
-          exp: jwtPayload.exp ? jwtPayload.exp: 0,
-          iss: jwtPayload.iss ? jwtPayload.iss: '',
-        },
-        uInfo : {
-          uid  : jwtPayload.data.uid ? jwtPayload.data.uid    : '0',
-          uname: jwtPayload.data.uname ? jwtPayload.data.uname: '',
-        }
+        uid  : jwtPayload.data.uid ? jwtPayload.data.uid    : '0',
+        uname: jwtPayload.data.uname ? jwtPayload.data.uname: '',
+        iat: jwtPayload.iat ? jwtPayload.iat: 0,
+        exp: jwtPayload.exp ? jwtPayload.exp: 0,
+        iss: jwtPayload.iss ? jwtPayload.iss: '',
       }
 
       return jwtInfo

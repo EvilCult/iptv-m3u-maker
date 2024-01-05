@@ -27,6 +27,17 @@ const Login = () => {
 
   useEffect(() => {
     router.prefetch("/")
+    const uInfo = localStorage.getItem('uInfo')
+    if (uInfo !== null) {
+      const uInfoJson = JSON.parse(uInfo)
+      if (
+        uInfoJson.exp > Date.now() / 1000
+        && uInfoJson.iat < Date.now() / 1000
+        && uInfoJson.iss === 'EvilCult'
+      ) {
+        router.push('/')
+      }
+    }
   })
 
   const handleKeyup = (e: React.KeyboardEvent) => {
