@@ -12,7 +12,6 @@ const Notify = (props: any, ref: React.Ref<any>) => {
 
 
   const handleNoticeOpen = (msg: string, typ: string = 'info') => {
-    let nTyp = ''
     switch (typ) {
       case 'suc':
         setColor('success')

@@ -1,27 +1,22 @@
-import * as React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   Box,
   CssBaseline,
   Toolbar,
   Typography,
+  Button,
 } from '@mui/material'
 import AppHeader from '@/components/appheader'
 import Copyright from '@/components/appfooter'
 
-import * as ChannelApi from '@/api/channelApi'
+import Test from '@/components/test'
 
 const DashBoard = () => {
+  const test = useRef<any>()
 
-  const response = ChannelApi.list(1)
-  response.then(
-    (res: any) => {
-      console.log(res)
-
-    },
-    () => {
-    }
-  )
-  .finally(() => {})
+  const handleClick = () => {
+    test.current.handleAdd()
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -32,7 +27,9 @@ const DashBoard = () => {
         <Typography paragraph>
           {process.env.API_URL}
         </Typography>
-        <Box sx={{ mt: 'auto' , p: 2}}><Copyright /></Box>
+        <Test ref={test} start={20}/>
+        <Button variant="contained" onClick={handleClick}>add num</Button>
+        <Box sx={{ mt: 'auto' , p: 2}}><Copyright />T</Box>
       </Box>
     </Box>
   )
